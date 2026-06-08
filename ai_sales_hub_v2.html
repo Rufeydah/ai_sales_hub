@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Sales Hub — استشارات الذكاء الاصطناعي</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+--bg:#0B0F1A;--bg2:#111827;--bg3:#1a2235;
+--card:#141c2e;--border:#1e2d4a;--border2:#2a3f62;
+--gold:#E8B84B;--gold2:#d4a53a;--gd:rgba(232,184,75,.12);
+--teal:#00C9A7;--teal2:#00a888;--td:rgba(0,201,167,.10);
+--blue:#4B9EFF;--bd:rgba(75,158,255,.10);
+--red:#FF6B6B;--rd:rgba(255,107,107,.10);
+--orange:#FF9F43;--od:rgba(255,159,67,.10);
+--purple:#A78BFA;--pd:rgba(167,139,250,.10);
+--green:#4ADE80;--greenD:rgba(74,222,128,.10);
+--white:#EEF2FF;--muted:#7889AA;--muted2:#3d5070;
+--r:12px;--r2:8px;--r3:5px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans Arabic','Inter',sans-serif;direction:rtl;font-size:13px}
+[lang="en"] body,[lang="en"] .nb,[lang="en"] .btn,[lang="en"] input,[lang="en"] select,[lang="en"] textarea{direction:ltr;font-family:'Inter','IBM Plex Sans Arabic',sans-serif}
+.ltr-mode{direction:ltr!important}
+.app{display:flex;height:100vh}
+.sidebar{width:220px;background:var(--bg2);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.logo{padding:16px;border-bottom:1px solid var(--border)}
+.logo-mark{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.logo-icon{width:32px;height:32px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.logo-name{font-size:14px;font-weight:600;color:var(--white)}
+.logo-sub{font-size:11px;color:var(--muted)}
+.logo-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 10px;background:var(--td);border:1px solid rgba(0,201,167,.25);border-radius:20px;font-size:10px;color:var(--teal)}
+.lang-switcher{display:flex;gap:4px;margin-top:8px}
+.lang-btn{flex:1;padding:4px 8px;border-radius:var(--r3);border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;cursor:pointer;font-family:inherit;transition:all .14s}
+.lang-btn.on{background:var(--gold);color:#000;border-color:var(--gold)}
+.nav{padding:8px;flex:1;overflow-y:auto}
+.nsec{font-size:9px;font-weight:600;letter-spacing:1px;color:var(--muted2);padding:8px 6px 3px;text-transform:uppercase}
+.nb{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border-radius:var(--r2);border:none;background:transparent;color:var(--muted);font-size:12px;cursor:pointer;text-align:right;transition:all .14s;margin-bottom:1px;font-family:inherit}
+.nb i{font-size:15px;flex-shrink:0}
+.nb:hover{background:var(--bg3);color:var(--white)}
+.nb.on{background:var(--gd);color:var(--gold);border:1px solid rgba(232,184,75,.2)}
+.topbar{padding:12px 20px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-t{font-size:15px;font-weight:600}
+.tb-s{font-size:11px;color:var(--muted);margin-top:2px}
+.content{flex:1;overflow-y:auto;padding:16px 20px}
+.page{display:none}.page.on{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px}
+.card2{background:var(--bg3);border-radius:var(--r2);padding:10px 12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stitle{font-size:13px;font-weight:600;color:var(--white);margin-bottom:10px}
+.lbl{font-size:10px;font-weight:600;letter-spacing:.6px;color:var(--muted2);text-transform:uppercase;margin-bottom:5px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500}
+.bg{background:var(--gd);color:var(--gold);border:1px solid rgba(232,184,75,.25)}
+.bt{background:var(--td);color:var(--teal);border:1px solid rgba(0,201,167,.25)}
+.bb{background:var(--bd);color:var(--blue);border:1px solid rgba(75,158,255,.25)}
+.br{background:var(--rd);color:var(--red);border:1px solid rgba(255,107,107,.25)}
+.bo{background:var(--od);color:var(--orange);border:1px solid rgba(255,159,67,.25)}
+.bp{background:var(--pd);color:var(--purple);border:1px solid rgba(167,139,250,.25)}
+input[type=text],input[type=number],select,textarea{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r2);color:var(--white);font-family:inherit;font-size:12px;padding:8px 11px;width:100%;outline:none;direction:rtl}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+select option{background:var(--bg2)}
+input[type=range]{-webkit-appearance:none;height:4px;border-radius:2px;background:var(--border2);outline:none;flex:1;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);cursor:pointer}
+.btn{padding:8px 15px;border-radius:var(--r2);border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .14s}
+.btn:hover{background:var(--bg3);color:var(--white)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-gold{background:var(--gold);color:#000;border-color:var(--gold)}.btn-gold:hover:not(:disabled){background:var(--gold2)}
+.btn-teal{background:var(--teal);color:#000;border-color:var(--teal)}.btn-teal:hover:not(:disabled){background:var(--teal2)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted)}.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm{padding:5px 11px;font-size:11px}
+.pb{background:var(--bg3);height:5px;border-radius:3px;overflow:hidden;margin-bottom:8px}
+.pf{height:100%;border-radius:3px}
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:auto}
+table{width:100%;border-collapse:collapse}
+th{padding:9px 13px;text-align:right;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.5px;border-bottom:1px solid var(--border);background:var(--bg3)}
+td{padding:10px 13px;font-size:12px;border-bottom:1px solid rgba(30,45,74,.5);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+.tag{padding:4px 11px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;cursor:pointer;transition:all .12s;display:inline-block;margin:2px;font-family:inherit}
+.tag.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.task{padding:6px 9px;border-radius:var(--r3);font-size:11px;margin-bottom:4px;border-right:2px solid;line-height:1.4}
+.t-b{background:var(--bd);border-color:var(--blue);color:#8dc8ff}
+.t-g{background:var(--gd);border-color:var(--gold);color:#f5d885}
+.t-t{background:var(--td);border-color:var(--teal);color:#5eead4}
+.t-o{background:var(--od);border-color:var(--orange);color:#ffc07a}
+.t-r{background:var(--rd);border-color:var(--red);color:#ffaaaa}
+.cs{padding:11px 13px;border-radius:var(--r2);margin-bottom:7px;cursor:pointer;border-right:3px solid;transition:opacity .12s}
+.cs:hover{opacity:.8}
+.cs-ex{font-size:11px;margin-top:7px;padding:8px 10px;border-radius:var(--r3);background:rgba(0,0,0,.25);line-height:1.7;font-style:italic;border:1px solid rgba(255,255,255,.06)}
+.ob-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:7px;overflow:hidden}
+.ob-h{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;cursor:pointer}
+.ob-b{padding:0 13px 11px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);line-height:1.7}
+.chat-wrap{display:flex;flex-direction:column;gap:8px;height:260px;overflow-y:auto;padding:2px 0}
+.bubble{padding:9px 12px;border-radius:var(--r2);font-size:12px;line-height:1.7;max-width:90%}
+.b-user{background:var(--gd);color:#f5d885;border:1px solid rgba(232,184,75,.2);align-self:flex-end;text-align:right}
+.b-ai{background:var(--bg3);color:var(--white);border:1px solid var(--border);align-self:flex-start}
+.b-sys{background:var(--td);color:var(--teal);border:1px solid rgba(0,201,167,.2);font-size:11px;padding:5px 12px;align-self:center;border-radius:20px}
+.typing{display:flex;align-items:center;gap:4px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);align-self:flex-start}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:blink 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+.msg-area{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px 13px;font-size:12px;line-height:1.8;color:var(--white);white-space:pre-wrap;min-height:80px;max-height:220px;overflow-y:auto}
+.sc-card{border:1px solid var(--border);border-radius:var(--r2);padding:10px 12px;cursor:pointer;transition:border-color .12s;margin-bottom:6px}
+.sc-card:hover{border-color:var(--gold)}.sc-card.picked{border-color:var(--gold);background:var(--gd)}
+.week-g{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:11px}
+.pkg{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;position:relative}
+.pkg.feat{border-color:var(--gold)}
+.pkg-best{position:absolute;top:-10px;right:14px;background:var(--gold);color:#000;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px}
+.pkg-feat{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-bottom:4px}
+.pkg-feat i{color:var(--teal);font-size:13px}
+.stat{background:var(--bg3);border-radius:var(--r2);padding:12px 14px;text-align:center}
+.stat-n{font-size:24px;font-weight:600;margin-bottom:2px}
+.stat-l{font-size:11px;color:var(--muted)}
+.stage{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:500;cursor:pointer;border:1px solid}
+.s0{background:rgba(100,100,100,.1);color:#777;border-color:#444}
+.s1{background:var(--bd);color:var(--blue);border-color:rgba(75,158,255,.3)}
+.s2{background:var(--gd);color:var(--gold);border-color:rgba(232,184,75,.3)}
+.s3{background:var(--od);color:var(--orange);border-color:rgba(255,159,67,.3)}
+.s4{background:var(--td);color:var(--teal);border-color:rgba(0,201,167,.3)}
+.s5{background:var(--rd);color:var(--red);border-color:rgba(255,107,107,.3)}
+.tl-row{display:flex;gap:12px;margin-bottom:12px}
+.tl-circ{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;flex-shrink:0}
+.tl-line{width:2px;background:var(--border);margin:4px auto 0;flex-shrink:0}
+.funnel-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.fb-wrap{flex:1;background:var(--bg3);border-radius:4px;height:30px;overflow:hidden}
+.fb{height:100%;border-radius:4px;display:flex;align-items:center;padding-right:10px;font-size:11px;font-weight:500;color:#fff;justify-content:flex-end;min-width:44px}
+.note-inp{background:var(--bg3);border:1px solid var(--border);border-radius:5px;color:var(--white);font-size:11px;padding:4px 8px;width:110px;font-family:inherit}
+.tip-box{background:var(--od);border:1px solid rgba(255,159,67,.25);border-radius:var(--r2);padding:9px 11px;font-size:11px;color:var(--orange);line-height:1.6;margin-top:8px}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--teal);color:#000;padding:7px 20px;border-radius:20px;font-size:12px;font-weight:600;opacity:0;transition:opacity .25s;pointer-events:none;z-index:9999}
+.cc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
+*::-webkit-scrollbar{width:4px;height:4px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">✓</div>
+<div class="app">
+<div class="sidebar">
+  <div class="logo">
+    <div class="logo-mark"><div class="logo-icon">⚡</div><div class="logo-name">AI Sales Hub</div></div>
+    <div class="logo-sub" id="l-sub">استشارات الذكاء الاصطناعي</div>
+    <div class="logo-badge"><i class="ti ti-target"></i><span id="l-badge">7 أيام للعميل الأول</span></div>
+    <div class="lang-switcher">
+      <button class="lang-btn on" onclick="setLang('ar',this)">العربية</button>
+      <button class="lang-btn" onclick="setLang('en',this)">English</button>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="nsec" id="n0">الرئيسية</div>
+    <button class="nb on" onclick="showPage('dash',this)"><i class="ti ti-layout-dashboard"></i><span class="nl" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span></button>
+    <button class="nb" onclick="showPage('clients',this)"><i class="ti ti-building-store"></i><span class="nl" data-ar="العملاء المحتملون" data-en="Prospects">العملاء المحتملون</span></button>
+    <button class="nb" onclick="showPage('week',this)"><i class="ti ti-calendar-week"></i><span class="nl" data-ar="خطة الأسبوع" data-en="Week Plan">خطة الأسبوع</span></button>
+    <div class="nsec" id="n1">التواصل الذكي</div>
+    <button class="nb" onclick="showPage('gen',this)"><i class="ti ti-wand"></i><span class="nl" data-ar="مولد الرسائل AI" data-en="AI Message Generator">مولد الرسائل AI</span></button>
+    <button class="nb" onclick="showPage('simulator',this)"><i class="ti ti-phone"></i><span class="nl" data-ar="محاكي المكالمة الحي" data-en="Live Call Simulator">محاكي المكالمة الحي</span></button>
+    <button class="nb" onclick="showPage('analyzer',this)"><i class="ti ti-microscope"></i><span class="nl" data-ar="تحليل العميل AI" data-en="AI Client Analyzer">تحليل العميل AI</span></button>
+    <button class="nb" onclick="showPage('coach',this)"><i class="ti ti-school"></i><span class="nl" data-ar="مدرب المبيعات AI" data-en="AI Sales Coach">مدرب المبيعات AI</span></button>
+    <button class="nb" onclick="showPage('scripts',this)"><i class="ti ti-message-2"></i><span class="nl" data-ar="سكريبتات التواصل" data-en="Talk Scripts">سكريبتات التواصل</span></button>
+    <button class="nb" onclick="showPage('email',this)"><i class="ti ti-mail"></i><span class="nl" data-ar="قوالب البريد" data-en="Email Templates">قوالب البريد</span></button>
+    <div class="nsec" id="n2">الإغلاق</div>
+    <button class="nb" onclick="showPage('objections',this)"><i class="ti ti-shield"></i><span class="nl" data-ar="مكتبة الاعتراضات" data-en="Objections Library">مكتبة الاعتراضات</span></button>
+    <button class="nb" onclick="showPage('packages',this)"><i class="ti ti-package"></i><span class="nl" data-ar="الباقات والتسعير" data-en="Packages & Pricing">الباقات والتسعير</span></button>
+    <button class="nb" onclick="showPage('pricing',this)"><i class="ti ti-calculator"></i><span class="nl" data-ar="حاسبة التسعير" data-en="Price Calculator">حاسبة التسعير</span></button>
+    <div class="nsec" id="n3">المتابعة</div>
+    <button class="nb" onclick="showPage('crm',this)"><i class="ti ti-table"></i><span class="nl" data-ar="CRM المتابعة" data-en="CRM Tracker">CRM المتابعة</span></button>
+    <button class="nb" onclick="showPage('kpi',this)"><i class="ti ti-chart-bar"></i><span class="nl" data-ar="مؤشرات الأداء" data-en="KPIs">مؤشرات الأداء</span></button>
+    <button class="nb" onclick="showPage('funnel',this)"><i class="ti ti-filter"></i><span class="nl" data-ar="قمع المبيعات" data-en="Sales Funnel">قمع المبيعات</span></button>
+    <div class="nsec" id="n4">المحتوى والنمو</div>
+    <button class="nb" onclick="showPage('linkedin',this)"><i class="ti ti-brand-linkedin"></i><span class="nl" data-ar="محتوى LinkedIn" data-en="LinkedIn Content">محتوى LinkedIn</span></button>
+    <button class="nb" onclick="showPage('timeline',this)"><i class="ti ti-route"></i><span class="nl" data-ar="خارطة 90 يوم" data-en="90-Day Roadmap">خارطة 90 يوم</span></button>
+    <button class="nb" onclick="showPage('tools',this)"><i class="ti ti-tool"></i><span class="nl" data-ar="أدوات AI المجانية" data-en="Free AI Tools">أدوات AI المجانية</span></button>
+    <button class="nb" onclick="showPage('builder',this)"><i class="ti ti-robot"></i><span class="nl" data-ar="بنّاء الأتمتة" data-en="Automation Builder">بنّاء الأتمتة</span></button>
+    <button class="nb" onclick="showPage('chatbot',this)"><i class="ti ti-message-circle"></i><span class="nl" data-ar="بنّاء الشات بوت" data-en="Chatbot Builder">بنّاء الشات بوت</span></button>
+    <button class="nb" onclick="showPage('tips',this)"><i class="ti ti-bulb"></i><span class="nl" data-ar="أسرار الإغلاق" data-en="Closing Secrets">أسرار الإغلاق</span></button>
+  </div>
+</div>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-t" id="tb-t">لوحة تحكم المبيعات</div><div class="tb-s" id="tb-s">نظرة عامة — استشارات AI للشركات السعودية</div></div>
+    <div style="display:flex;gap:8px"><span class="badge bt"><i class="ti ti-robot"></i><span class="nl" data-ar="AI مدمج" data-en="AI Powered">AI مدمج</span></span><span class="badge bg"><i class="ti ti-target"></i><span class="nl" data-ar="7 أيام للإغلاق" data-en="7 Days to Close">7 أيام للإغلاق</span></span></div>
+  </div>
+  <div class="content">
+<!-- DASHBOARD -->
+<div id="pg-dash" class="page on">
+  <div class="g4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-n" style="color:var(--gold)">47</div><div class="stat-l nl" data-ar="شركة مستهدفة" data-en="Target Companies">شركة مستهدفة</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--teal)">7</div><div class="stat-l nl" data-ar="أيام للعميل الأول" data-en="Days to First Client">أيام للعميل الأول</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--blue);font-size:14px;line-height:1.2">2,500<br><span style="font-size:11px">–3,000 SAR</span></div><div class="stat-l nl" data-ar="متوسط عقد الـ Pilot" data-en="Avg. Pilot Deal">متوسط عقد الـ Pilot</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--orange)">78%</div><div class="stat-l nl" data-ar="نسبة نجاح الخطة" data-en="Plan Success Rate">نسبة نجاح الخطة</div></div>
+  </div>
+  <div class="g2" style="margin-bottom:12px">
+    <div class="card">
+      <div class="stitle nl" data-ar="القطاعات الأعلى أولوية" data-en="Top Priority Sectors">القطاعات الأعلى أولوية</div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span class="nl" data-ar="التجزئة والتجارة الإلكترونية" data-en="Retail & E-commerce">التجزئة والتجارة الإلكترونية</span><span style="color:var(--teal)">95%</span></div><div class="pb"><div class="pf" style="width:95%;background:var(--teal)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span class="nl" data-ar="العيادات والصحة" data-en="Healthcare & Clinics">العيادات والصحة</span><span style="color:var(--blue)">88%</span></div><div class="pb"><div class="pf" style="width:88%;background:var(--blue)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span class="nl" data-ar="العقارات" data-en="Real Estate">العقارات</span><span style="color:var(--gold)">82%</span></div><div class="pb"><div class="pf" style="width:82%;background:var(--gold)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span class="nl" data-ar="المطاعم والكافيهات" data-en="F&B / Restaurants">المطاعم والكافيهات</span><span style="color:var(--orange)">75%</span></div><div class="pb"><div class="pf" style="width:75%;background:var(--orange)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span class="nl" data-ar="اللوجستيات" data-en="Logistics">اللوجستيات</span><span style="color:var(--purple)">68%</span></div><div class="pb"><div class="pf" style="width:68%;background:var(--purple)"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="معادلة النجاح خلال 7 أيام" data-en="7-Day Success Formula">معادلة النجاح خلال 7 أيام</div>
+      <div class="task t-b nl" data-ar="اليوم 1-2: بحث + تجهيز 20 شركة" data-en="Day 1-2: Research + Build list of 20 companies">اليوم 1-2: بحث + تجهيز 20 شركة</div>
+      <div class="task t-g nl" data-ar="اليوم 2: تخصيص رسائل LinkedIn" data-en="Day 2: Personalize LinkedIn messages">اليوم 2: تخصيص رسائل LinkedIn</div>
+      <div class="task t-t nl" data-ar="اليوم 3: 20 رسالة + 10 اتصالات" data-en="Day 3: 20 messages + 10 calls">اليوم 3: 20 رسالة + 10 اتصالات</div>
+      <div class="task t-o nl" data-ar="اليوم 4-5: متابعة + جدولة اجتماعات" data-en="Day 4-5: Follow-up + Schedule meetings">اليوم 4-5: متابعة + جدولة اجتماعات</div>
+      <div class="task t-r nl" data-ar="اليوم 6-7: اجتماعات + إغلاق أول عميل" data-en="Day 6-7: Meetings + Close first client">اليوم 6-7: اجتماعات + إغلاق أول عميل</div>
+      <div style="margin-top:10px;padding:9px;background:var(--td);border-radius:var(--r2);border:1px solid rgba(0,201,167,.2);font-size:11px;color:var(--teal)" class="nl" data-ar="✓ اتبع الخطة بدقة — 78% يغلقون خلال الأسبوع الأول" data-en="✓ Follow the plan precisely — 78% close within the first week">✓ اتبع الخطة بدقة — 78% يغلقون خلال الأسبوع الأول</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="stitle nl" data-ar="لماذا الآن هو الوقت الصح للسوق السعودي" data-en="Why Now Is the Right Time for the Saudi Market">لماذا الآن هو الوقت الصح للسوق السعودي</div>
+    <div class="g3">
+      <div class="card2"><div style="color:var(--gold);font-weight:600;margin-bottom:5px;font-size:12px nl" data-ar="رؤية 2030" data-en="Vision 2030">رؤية 2030</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="الحكومة تدفع للتحول الرقمي — الطلب في ذروته والمنافسة ضعيفة" data-en="Government pushing digital transformation — demand at peak, competition still weak">الحكومة تدفع للتحول الرقمي — الطلب في ذروته والمنافسة ضعيفة</div></div>
+      <div class="card2"><div style="color:var(--teal);font-weight:600;margin-bottom:5px;font-size:12px" class="nl" data-ar="ألم حقيقي" data-en="Real Pain">ألم حقيقي</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="80% من SMEs تعاني من عمليات يدوية قابلة للأتمتة بـ AI" data-en="80% of SMEs have manual processes that AI can automate easily">80% من SMEs تعاني من عمليات يدوية قابلة للأتمتة بـ AI</div></div>
+      <div class="card2"><div style="color:var(--blue);font-weight:600;margin-bottom:5px;font-size:12px" class="nl" data-ar="ميزانية موجودة" data-en="Budget Exists">ميزانية موجودة</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="متوسط إنفاق SME سعودية على التقنية: 80,000 ريال/سنة" data-en="Average Saudi SME tech spend: SAR 80,000/year">متوسط إنفاق SME سعودية على التقنية: 80,000 ريال/سنة</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div id="pg-clients" class="page">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:8px 12px">
+    <i class="ti ti-search" style="color:var(--muted)"></i>
+    <input type="text" id="cl-search" placeholder="ابحث عن شركة... / Search company..." style="border:none;background:transparent;padding:0" oninput="filterClients()">
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
+    <button class="tag on" onclick="filterSector('all',this)"><span class="nl" data-ar="الكل" data-en="All">الكل</span></button>
+    <button class="tag" onclick="filterSector('تجزئة',this)"><span class="nl" data-ar="تجزئة" data-en="Retail">تجزئة</span></button>
+    <button class="tag" onclick="filterSector('صحة',this)"><span class="nl" data-ar="صحة" data-en="Healthcare">صحة</span></button>
+    <button class="tag" onclick="filterSector('عقارات',this)"><span class="nl" data-ar="عقارات" data-en="Real Estate">عقارات</span></button>
+    <button class="tag" onclick="filterSector('مطاعم',this)"><span class="nl" data-ar="مطاعم" data-en="F&B">مطاعم</span></button>
+    <button class="tag" onclick="filterSector('لوجستيات',this)"><span class="nl" data-ar="لوجستيات" data-en="Logistics">لوجستيات</span></button>
+    <button class="tag" onclick="filterSector('تعليم',this)"><span class="nl" data-ar="تعليم" data-en="Education">تعليم</span></button>
+    <button class="tag" onclick="filterSector('بناء',this)"><span class="nl" data-ar="بناء" data-en="Construction">بناء</span></button>
+  </div>
+  <div class="tbl-wrap">
+    <table><thead><tr>
+      <th class="nl" data-ar="الشركة" data-en="Company">الشركة</th>
+      <th class="nl" data-ar="القطاع" data-en="Sector">القطاع</th>
+      <th class="nl" data-ar="المدينة" data-en="City">المدينة</th>
+      <th class="nl" data-ar="الألم الرئيسي" data-en="Main Pain">الألم الرئيسي</th>
+      <th class="nl" data-ar="الأولوية" data-en="Priority">الأولوية</th>
+      <th class="nl" data-ar="قناة" data-en="Channel">قناة</th>
+      <th></th>
+    </tr></thead><tbody id="cl-body"></tbody></table>
+  </div>
+  <div style="margin-top:8px;font-size:11px;color:var(--muted);text-align:center" id="cl-count"></div>
+</div>
+
+<!-- WEEK PLAN -->
+<div id="pg-week" class="page">
+  <div class="week-g">
+    <div class="day-card"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="اليوم 1" data-en="Day 1">اليوم 1</div><div style="font-size:12px;font-weight:600;margin-bottom:8px" class="nl" data-ar="الأحد" data-en="Sunday">الأحد</div><div class="task t-b nl" data-ar="بحث LinkedIn — 30 شركة" data-en="LinkedIn research — 30 companies">بحث LinkedIn — 30 شركة</div><div class="task t-b nl" data-ar="اقرأ أخبار الشركات" data-en="Read company news">اقرأ أخبار الشركات</div><div class="task t-g nl" data-ar="جهّز جدول صناع القرار" data-en="Build decision-maker spreadsheet">جهّز جدول صناع القرار</div></div>
+    <div class="day-card"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="اليوم 2" data-en="Day 2">اليوم 2</div><div style="font-size:12px;font-weight:600;margin-bottom:8px" class="nl" data-ar="الاثنين" data-en="Monday">الاثنين</div><div class="task t-g nl" data-ar="خصص رسالة من المولد" data-en="Personalize via AI generator">خصص رسالة من المولد</div><div class="task t-g nl" data-ar="جهّز PDF عرض 5 شرائح" data-en="Prepare 5-slide PDF deck">جهّز PDF عرض 5 شرائح</div><div class="task t-t nl" data-ar="10 رسائل LinkedIn صباحاً" data-en="10 LinkedIn messages — morning">10 رسائل LinkedIn صباحاً</div></div>
+    <div class="day-card"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="اليوم 3" data-en="Day 3">اليوم 3</div><div style="font-size:12px;font-weight:600;margin-bottom:8px" class="nl" data-ar="الثلاثاء" data-en="Tuesday">الثلاثاء</div><div class="task t-t nl" data-ar="10 رسائل إضافية" data-en="10 more messages">10 رسائل إضافية</div><div class="task t-t nl" data-ar="5 اتصالات مباشرة" data-en="5 direct calls">5 اتصالات مباشرة</div><div class="task t-o nl" data-ar="تابع ردود أمس" data-en="Follow up yesterday's replies">تابع ردود أمس</div></div>
+    <div class="day-card"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="اليوم 4" data-en="Day 4">اليوم 4</div><div style="font-size:12px;font-weight:600;margin-bottom:8px" class="nl" data-ar="الأربعاء" data-en="Wednesday">الأربعاء</div><div class="task t-o nl" data-ar="متابعة من لم يرد" data-en="Follow up non-responders">متابعة من لم يرد</div><div class="task t-t nl" data-ar="جدول مكالمات تقييم" data-en="Schedule discovery calls">جدول مكالمات تقييم</div><div class="task t-g nl" data-ar="حضّر SPIN للاجتماعات" data-en="Prepare SPIN questions">حضّر SPIN للاجتماعات</div></div>
+    <div class="day-card"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="اليوم 5-7" data-en="Day 5-7">اليوم 5-7</div><div style="font-size:12px;font-weight:600;margin-bottom:8px" class="nl" data-ar="الخميس-السبت" data-en="Thu-Sat">الخميس-السبت</div><div class="task t-r nl" data-ar="اجتماعات التقييم" data-en="Discovery meetings">اجتماعات التقييم</div><div class="task t-r nl" data-ar="قدّم عرض مخصص" data-en="Present custom proposal">قدّم عرض مخصص</div><div class="task t-r nl" data-ar="أغلق أول عقد" data-en="Close first deal">أغلق أول عقد</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="stitle nl" data-ar="قنوات التواصل — الأفضل أولاً" data-en="Best Outreach Channels">قنوات التواصل — الأفضل أولاً</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="card2" style="display:flex;align-items:center;gap:10px"><span class="badge bt">1</span><div><div style="font-size:12px;font-weight:500">LinkedIn InMail</div><div style="font-size:10px;color:var(--muted)" class="nl" data-ar="35-45% رد — الأفضل للـ B2B" data-en="35-45% reply rate — best for B2B">35-45% رد — الأفضل للـ B2B</div></div></div>
+        <div class="card2" style="display:flex;align-items:center;gap:10px"><span class="badge bb">2</span><div><div style="font-size:12px;font-weight:500" class="nl" data-ar="واتساب البزنس" data-en="WhatsApp Business">واتساب البزنس</div><div style="font-size:10px;color:var(--muted)" class="nl" data-ar="25-35% رد — مألوف في السعودية" data-en="25-35% reply — common in Saudi">25-35% رد — مألوف في السعودية</div></div></div>
+        <div class="card2" style="display:flex;align-items:center;gap:10px"><span class="badge bg">3</span><div><div style="font-size:12px;font-weight:500" class="nl" data-ar="اتصال مباشر" data-en="Direct Call">اتصال مباشر</div><div style="font-size:10px;color:var(--muted)" class="nl" data-ar="يبني الثقة أسرع — بعد رسالة" data-en="Builds trust faster — after a message">يبني الثقة أسرع — بعد رسالة</div></div></div>
+        <div class="card2" style="display:flex;align-items:center;gap:10px"><span class="badge bo">4</span><div><div style="font-size:12px;font-weight:500" class="nl" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</div><div style="font-size:10px;color:var(--muted)" class="nl" data-ar="10-20% رد — دعم للقنوات الأخرى" data-en="10-20% reply — supports other channels">10-20% رد — دعم للقنوات الأخرى</div></div></div>
+      </div>
+    </div>
+    <div class="card"><div class="stitle nl" data-ar="الأخطاء القاتلة — تجنبها" data-en="Fatal Mistakes — Avoid These">الأخطاء القاتلة — تجنبها</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="padding:6px 9px;background:var(--rd);border-radius:var(--r3);border-right:2px solid var(--red);font-size:11px;color:#ffaaaa" class="nl" data-ar='لا تبدأ بـ "أنا مستشار AI" — ابدأ بألمه هو' data-en='Never start with "I am an AI consultant" — start with their pain'>لا تبدأ بـ "أنا مستشار AI" — ابدأ بألمه هو</div>
+        <div style="padding:6px 9px;background:var(--rd);border-radius:var(--r3);border-right:2px solid var(--red);font-size:11px;color:#ffaaaa" class="nl" data-ar="لا ترسل رسالة جماعية — العميل يحس" data-en="Never send a mass message — clients can tell">لا ترسل رسالة جماعية — العميل يحس</div>
+        <div style="padding:6px 9px;background:var(--rd);border-radius:var(--r3);border-right:2px solid var(--red);font-size:11px;color:#ffaaaa" class="nl" data-ar="لا تعطي السعر في أول رسالة" data-en="Never share pricing in the first message">لا تعطي السعر في أول رسالة</div>
+        <div style="padding:6px 9px;background:var(--rd);border-radius:var(--r3);border-right:2px solid var(--red);font-size:11px;color:#ffaaaa" class="nl" data-ar="لا تتابع +3 مرات بدون قيمة جديدة" data-en="Don't follow up 3+ times without adding new value">لا تتابع +3 مرات بدون قيمة جديدة</div>
+        <div style="padding:6px 9px;background:var(--rd);border-radius:var(--r3);border-right:2px solid var(--red);font-size:11px;color:#ffaaaa" class="nl" data-ar="لا تنسى تجهيز Case Study واحد مقنع" data-en="Always have at least one compelling case study">لا تنسى تجهيز Case Study واحد مقنع</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- AI MESSAGE GENERATOR -->
+<div id="pg-gen" class="page">
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="stitle nl" data-ar="بيانات العميل" data-en="Client Info">بيانات العميل</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div><div class="lbl nl" data-ar="اسم الشركة" data-en="Company Name">اسم الشركة</div><input type="text" id="g-co" placeholder="e.g. النخبة Clinics / Al Nakhla Group"></div>
+          <div><div class="lbl nl" data-ar="اسم المسؤول" data-en="Contact Name">اسم المسؤول</div><input type="text" id="g-nm" placeholder="e.g. أحمد / Ahmed"></div>
+          <div><div class="lbl nl" data-ar="القطاع" data-en="Sector">القطاع</div>
+            <select id="g-se">
+              <option value="الرعاية الصحية">الرعاية الصحية / Healthcare</option>
+              <option value="التجزئة">التجزئة / Retail & E-commerce</option>
+              <option value="العقارات">العقارات / Real Estate</option>
+              <option value="المطاعم">المطاعم / F&B</option>
+              <option value="اللوجستيات">اللوجستيات / Logistics</option>
+              <option value="التعليم">التعليم / Education</option>
+              <option value="المقاولات">المقاولات / Construction</option>
+              <option value="الخدمات المالية">الخدمات المالية / Finance</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="التحدي الرئيسي" data-en="Main Challenge">التحدي الرئيسي</div>
+            <select id="g-pa">
+              <option value="عمليات يدوية تستهلك وقت الفريق">عمليات يدوية / Manual repetitive tasks</option>
+              <option value="ضعف خدمة العملاء">ضعف خدمة العملاء / Poor customer service</option>
+              <option value="صعوبة تحليل البيانات">صعوبة تحليل البيانات / Weak data analysis</option>
+              <option value="تكاليف تشغيلية مرتفعة">تكاليف تشغيلية مرتفعة / High operational costs</option>
+              <option value="فقدان العملاء للمنافسة">فقدان العملاء / Customer churn</option>
+              <option value="عدم القدرة على التوسع">عدم القدرة على التوسع / Can't scale</option>
+              <option value="إدارة المخزون">إدارة المخزون / Inventory management</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="نوع الرسالة" data-en="Message Type">نوع الرسالة</div>
+            <select id="g-ty">
+              <option value="linkedin">LinkedIn — رسالة أولى / First outreach</option>
+              <option value="followup">متابعة / Follow-up (3 days no reply)</option>
+              <option value="value">رسالة قيمة مجانية / Free value message</option>
+              <option value="whatsapp">واتساب / WhatsApp — short & direct</option>
+              <option value="email">بريد إلكتروني / Formal email</option>
+              <option value="reactivate">إعادة تفعيل / Re-engage old lead</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="لغة الرسالة" data-en="Message Language">لغة الرسالة</div>
+            <select id="g-lang">
+              <option value="ar">عربي — Arabic</option>
+              <option value="en">English — إنجليزي</option>
+              <option value="ar-en">ثنائي — Bilingual (AR+EN)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stitle nl" data-ar="خيارات التوليد" data-en="Generation Options">خيارات التوليد</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="btn btn-gold" id="gen-btn" onclick="generateMessage()"><i class="ti ti-sparkles"></i> <span class="nl" data-ar="توليد بالـ AI" data-en="Generate with AI">توليد بالـ AI</span></button>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" id="imp-btn" onclick="improveMsg()" disabled style="flex:1" class="nl" data-ar="تحسين" data-en="Improve">تحسين</button>
+            <button class="btn btn-ghost btn-sm" id="sht-btn" onclick="shortenMsg()" disabled style="flex:1" class="nl" data-ar="أقصر" data-en="Shorten">أقصر</button>
+            <button class="btn btn-ghost btn-sm" id="frm-btn" onclick="formalMsg()" disabled style="flex:1" class="nl" data-ar="أرسمية" data-en="Formal">أرسمية</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="الرسالة المُولَّدة" data-en="Generated Message">الرسالة المُولَّدة</div>
+      <div class="msg-area" id="gen-out" style="min-height:200px" class="nl" data-ar="ادخل بيانات العميل واضغط توليد..." data-en="Enter client info and click Generate...">ادخل بيانات العميل واضغط توليد...</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <button class="btn btn-ghost btn-sm" onclick="copyEl('gen-out')"><i class="ti ti-copy"></i> <span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+        <span style="font-size:10px;color:var(--muted2)" id="gen-chars"></span>
+      </div>
+      <div class="tip-box" id="gen-tip" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIVE CALL SIMULATOR -->
+<div id="pg-simulator" class="page">
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="stitle nl" data-ar="اختر سيناريو المكالمة" data-en="Choose Call Scenario">اختر سيناريو المكالمة</div>
+        <div id="sc-pick">
+          <div class="sc-card" onclick="pickScenario(this,'مدير عيادة متشكك جرب AI قبل وما نجح وعنده ميزانية محدودة','Healthcare clinic manager who tried AI before and it failed, has limited budget and is skeptical','صحة')">
+            <div style="font-size:12px;font-weight:500"><i class="ti ti-stethoscope"></i> <span class="nl" data-ar="مدير عيادة — متشكك من AI" data-en="Clinic Manager — Skeptic">مدير عيادة — متشكك من AI</span></div>
+            <div style="font-size:11px;color:var(--muted)" class="nl" data-ar="تجربة سابقة سيئة — صعب الإقناع" data-en="Bad past experience — hard to convince">تجربة سابقة سيئة — صعب الإقناع</div>
+          </div>
+          <div class="sc-card" onclick="pickScenario(this,'صاحب محل تجزئة مشغول يقول ما يحتاج AI وأعماله تمشي كويس','Busy retail shop owner who says he does not need AI and thinks his business is running fine','تجزئة')">
+            <div style="font-size:12px;font-weight:500"><i class="ti ti-shopping-cart"></i> <span class="nl" data-ar="صاحب محل — ما أحتاج AI" data-en="Shop Owner — I don't need AI">صاحب محل — ما أحتاج AI</span></div>
+            <div style="font-size:11px;color:var(--muted)" class="nl" data-ar="يظن الوضع جيد بدون تقنية" data-en="Thinks things are fine without tech">يظن الوضع جيد بدون تقنية</div>
+          </div>
+          <div class="sc-card" onclick="pickScenario(this,'مدير عقارات مهتم لكن يقول السعر غالي وعنده عروض أرخص','Real estate manager who is interested but says the price is too high and has cheaper offers','عقارات')">
+            <div style="font-size:12px;font-weight:500"><i class="ti ti-building"></i> <span class="nl" data-ar="مدير عقارات — غالي علينا" data-en="Real Estate Manager — Too Expensive">مدير عقارات — غالي علينا</span></div>
+            <div style="font-size:11px;color:var(--muted)" class="nl" data-ar="مهتم لكن يفاوض على السعر" data-en="Interested but negotiates on price">مهتم لكن يفاوض على السعر</div>
+          </div>
+          <div class="sc-card" onclick="pickScenario(this,'صاحب مطعم مشغول دائماً يؤجل القرارات ويقول بعدين','Restaurant owner who is always busy and keeps postponing decisions','مطاعم')">
+            <div style="font-size:12px;font-weight:500"><i class="ti ti-tools-kitchen-2"></i> <span class="nl" data-ar="صاحب مطعم — دائماً بعدين" data-en="Restaurant Owner — Always Later">صاحب مطعم — دائماً بعدين</span></div>
+            <div style="font-size:11px;color:var(--muted)" class="nl" data-ar="يؤجل كل قرار — يحتاج urgency" data-en="Postpones every decision — needs urgency">يؤجل كل قرار — يحتاج urgency</div>
+          </div>
+        </div>
+        <div id="sc-ready" style="display:none">
+          <div style="padding:9px;background:var(--td);border:1px solid rgba(0,201,167,.2);border-radius:var(--r2);font-size:11px;color:var(--teal);margin-bottom:10px" id="sc-label"></div>
+          <div style="display:flex;gap:4px;margin-bottom:5px">
+            <div style="height:3px;flex:1;border-radius:2px;background:var(--teal)" id="cd0"></div>
+            <div style="height:3px;flex:1;border-radius:2px;background:var(--border2)" id="cd1"></div>
+            <div style="height:3px;flex:1;border-radius:2px;background:var(--border2)" id="cd2"></div>
+            <div style="height:3px;flex:1;border-radius:2px;background:var(--border2)" id="cd3"></div>
+            <div style="height:3px;flex:1;border-radius:2px;background:var(--border2)" id="cd4"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px" id="call-step-lbl"></div>
+          <button class="btn btn-ghost btn-sm" style="color:var(--red);border-color:var(--red)" onclick="resetCall()"><span class="nl" data-ar="تغيير السيناريو" data-en="Change Scenario">تغيير السيناريو</span></button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stitle nl" data-ar="نصيحة المرحلة" data-en="Stage Tip">نصيحة المرحلة</div>
+        <div id="call-hint" style="font-size:12px;color:var(--muted);line-height:1.7" class="nl" data-ar="اختر سيناريو للبدء..." data-en="Choose a scenario to start...">اختر سيناريو للبدء...</div>
+      </div>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;gap:8px">
+      <div class="stitle nl" data-ar="المكالمة الحية" data-en="Live Call">المكالمة الحية</div>
+      <div class="chat-wrap" id="call-chat">
+        <div class="bubble b-sys nl" data-ar="اختر سيناريو وابدأ المكالمة التدريبية" data-en="Choose a scenario to start the training call">اختر سيناريو وابدأ المكالمة التدريبية</div>
+      </div>
+      <div style="display:none;gap:7px" id="call-inp-row">
+        <input type="text" id="call-inp" placeholder="اكتب ردك... / Type your response..." onkeydown="if(event.key==='Enter')sendCallMsg()">
+        <button class="btn btn-teal btn-sm" onclick="sendCallMsg()"><i class="ti ti-send"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT ANALYZER -->
+<div id="pg-analyzer" class="page">
+  <div class="g2">
+    <div class="card">
+      <div class="stitle nl" data-ar="حلّل عميلك المحتمل" data-en="Analyze Your Prospect">حلّل عميلك المحتمل</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><div class="lbl nl" data-ar="اسم الشركة أو المجال" data-en="Company / Industry">اسم الشركة أو المجال</div><input type="text" id="an-co" placeholder="e.g. سلسلة عيادات خاصة / Private clinic chain in Riyadh"></div>
+        <div><div class="lbl nl" data-ar="حجم الشركة" data-en="Company Size">حجم الشركة</div>
+          <select id="an-sz">
+            <option class="nl" data-ar="صغيرة (1-20 موظف)" data-en="Small (1-20 employees)">صغيرة (1-20 موظف)</option>
+            <option class="nl" data-ar="متوسطة (20-100 موظف)" data-en="Medium (20-100 employees)">متوسطة (20-100 موظف)</option>
+            <option class="nl" data-ar="كبيرة (100-500 موظف)" data-en="Large (100-500 employees)">كبيرة (100-500 موظف)</option>
+          </select>
+        </div>
+        <div><div class="lbl nl" data-ar="ما تعرفه عن الشركة" data-en="What You Know About Them">ما تعرفه عن الشركة</div>
+          <input type="text" id="an-inf" placeholder="e.g. 3 branches, recently expanded, uses Excel...">
+        </div>
+        <div><div class="lbl nl" data-ar="لغة التحليل" data-en="Analysis Language">لغة التحليل</div>
+          <select id="an-lang"><option value="ar">عربي</option><option value="en">English</option></select>
+        </div>
+        <button class="btn btn-gold" id="an-btn" onclick="analyzeClient()"><i class="ti ti-microscope"></i> <span class="nl" data-ar="تحليل بالـ AI" data-en="Analyze with AI">تحليل بالـ AI</span></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="نتيجة التحليل" data-en="Analysis Result">نتيجة التحليل</div>
+      <div class="msg-area" id="an-out" style="min-height:250px" class="nl" data-ar="ادخل بيانات الشركة للتحليل..." data-en="Enter company info to analyze...">ادخل بيانات الشركة للتحليل...</div>
+    </div>
+  </div>
+</div>
+
+<!-- SALES COACH -->
+<div id="pg-coach" class="page">
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="stitle nl" data-ar="أسئلة شائعة" data-en="Common Questions">أسئلة شائعة</div>
+        <div class="sc-card" onclick="askCoach(this,'كيف أتعامل مع عميل يقول ما عنده ميزانية وأنا متأكد إنه يقدر يدفع؟')"><div style="font-size:12px" class="nl" data-ar='"ما عندنا ميزانية"' data-en='"We have no budget"'>"ما عندنا ميزانية"</div><div style="font-size:11px;color:var(--muted)" class="nl" data-ar="استراتيجية تحويل الاعتراض" data-en="Objection-handling strategy">استراتيجية تحويل الاعتراض</div></div>
+        <div class="sc-card" onclick="askCoach(this,'كيف أحدد السعر المناسب لمشروع AI لشركة SME سعودية؟')"><div style="font-size:12px" class="nl" data-ar="كيف أسعّر خدماتي؟" data-en="How do I price my services?">كيف أسعّر خدماتي؟</div><div style="font-size:11px;color:var(--muted)" class="nl" data-ar="استراتيجية التسعير للسوق السعودي" data-en="Pricing strategy for the Saudi market">استراتيجية التسعير للسوق السعودي</div></div>
+        <div class="sc-card" onclick="askCoach(this,'أرسلت 20 رسالة LinkedIn ولم يرد أحد — ما المشكلة وكيف أحسّن؟')"><div style="font-size:12px" class="nl" data-ar="لا أحد يرد على رسائلي" data-en="Nobody replies to my messages">لا أحد يرد على رسائلي</div><div style="font-size:11px;color:var(--muted)" class="nl" data-ar="تشخيص وتحسين معدل الاستجابة" data-en="Diagnose & improve reply rate">تشخيص وتحسين معدل الاستجابة</div></div>
+        <div class="sc-card" onclick="askCoach(this,'أول اجتماع وجهاً لوجه مع مدير شركة سعودية — كيف أستعد وماذا أقول؟')"><div style="font-size:12px" class="nl" data-ar="أول اجتماع وجهاً لوجه" data-en="First face-to-face meeting">أول اجتماع وجهاً لوجه</div><div style="font-size:11px;color:var(--muted)" class="nl" data-ar="تحضير كامل للاجتماع الأول" data-en="Full preparation for first meeting">تحضير كامل للاجتماع الأول</div></div>
+      </div>
+      <div class="card">
+        <div class="stitle nl" data-ar="سؤال مخصص" data-en="Custom Question">سؤال مخصص</div>
+        <div style="display:flex;gap:6px;margin-bottom:8px">
+          <input type="text" id="coach-q" placeholder="اكتب سؤالك... / Ask anything..." onkeydown="if(event.key==='Enter')askCoachCustom()">
+          <button class="btn btn-gold btn-sm" onclick="askCoachCustom()"><i class="ti ti-send"></i></button>
+        </div>
+        <div><div class="lbl nl" data-ar="لغة الإجابة" data-en="Answer Language">لغة الإجابة</div>
+          <select id="coach-lang"><option value="ar">عربي</option><option value="en">English</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="نصيحة المدرب" data-en="Coach's Advice">نصيحة المدرب</div>
+      <div class="msg-area" id="coach-out" style="min-height:300px" class="nl" data-ar="اختر سؤالاً أو اكتب سؤالك..." data-en="Choose a question or type your own...">اختر سؤالاً أو اكتب سؤالك...</div>
+    </div>
+  </div>
+</div>
+<!-- SCRIPTS -->
+<div id="pg-scripts" class="page">
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button class="btn btn-gold" onclick="showScript('li')"><span class="nl" data-ar="رسائل LinkedIn" data-en="LinkedIn Messages">رسائل LinkedIn</span></button>
+    <button class="btn btn-ghost" onclick="showScript('call')"><span class="nl" data-ar="سكريبت المكالمة" data-en="Call Script">سكريبت المكالمة</span></button>
+  </div>
+  <div id="sc-li">
+    <div class="card" style="margin-bottom:8px">
+      <div class="stitle" style="color:var(--gold)" class="nl" data-ar="الرسالة الأولى — Connection Request" data-en="First Message — Connection Request">الرسالة الأولى</div>
+      <div class="msg-area" id="scr1" style="font-size:12px">مرحباً [اسم]، لاحظت إن [الشركة] في قطاع [القطاع] وتنمو بشكل واضح — أحب أتواصل مع أناس يبنون شركات حقيقية.
+
+Hi [Name], I noticed [Company] in the [sector] space is growing fast — I'd love to connect with people building real businesses.</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="copyEl('scr1')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+    </div>
+    <div class="card" style="margin-bottom:8px">
+      <div class="stitle" style="color:var(--teal)" class="nl" data-ar="بعد القبول بيوم — رسالة القيمة" data-en="Day After Accept — Value Message">بعد القبول بيوم</div>
+      <div class="msg-area" id="scr2" style="font-size:12px">أهلاً [اسم]، شكراً للقبول. ألاحظ إن معظم شركات [القطاع] في السعودية تواجه [المشكلة] — حللت الموضوع وعندي ملاحظة قد تفيدك. هل عندك 15 دقيقة هذا الأسبوع؟
+
+Hi [Name], thanks for connecting! I've noticed most [sector] companies in Saudi Arabia struggle with [pain point]. I've been researching this and have an insight that might help you. Do you have 15 minutes this week?</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="copyEl('scr2')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+    </div>
+    <div class="card">
+      <div class="stitle" style="color:var(--orange)" class="nl" data-ar="متابعة بعد 3 أيام" data-en="3-Day Follow-Up">متابعة بعد 3 أيام</div>
+      <div class="msg-area" id="scr3" style="font-size:12px">أهلاً [اسم]، كنت أحلل شركات مشابهة لكم — إحداها وفرت 40% من وقت موظفيها بأداة AI بسيطة. أبعتلك تقرير قصير — بدون أي إلزام؟
+
+Hi [Name], I was analyzing companies similar to yours — one of them saved 40% of their team's time with a simple AI tool. Can I send you a short report — no strings attached?</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="copyEl('scr3')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+    </div>
+  </div>
+  <div id="sc-call" style="display:none">
+    <div class="cs" style="background:var(--td);border-color:var(--teal)" onclick="this.querySelector('.cs-ex').classList.toggle('hidden')">
+      <div style="font-size:12px;font-weight:600;color:var(--teal)" class="nl" data-ar="المرحلة 1 — الافتتاح (0-20 ثانية)" data-en="Stage 1 — Opening (0-20 sec)">المرحلة 1 — الافتتاح</div>
+      <div class="cs-ex hidden">AR: "السلام عليكم، أنا [اسمك] — عندي سؤال سريع دقيقتين فقط — هل الوقت مناسب؟"<br>EN: "Hi [Name], this is [Your Name] — I have a quick 2-minute question. Is now a good time?"<br><br>لا/No: اطلب وقتاً آخر / Ask for a better time<br>نعم/Yes: انتقل للمرحلة 2 / Move to stage 2</div>
+    </div>
+    <div class="cs" style="background:var(--bd);border-color:var(--blue)" onclick="this.querySelector('.cs-ex').classList.toggle('hidden')">
+      <div style="font-size:12px;font-weight:600;color:var(--blue)" class="nl" data-ar="المرحلة 2 — بناء الثقة (20-60 ثانية)" data-en="Stage 2 — Trust Building (20-60 sec)">المرحلة 2 — بناء الثقة</div>
+      <div class="cs-ex hidden">AR: "شفت إن [الشركة] في [القطاع] — واضح إنكم تنمون. الشركات اللي تنمو كثيراً تواجه [مشكلة] — هل هذا موجود عندكم؟"<br>EN: "I noticed [Company] is growing in [sector]. Fast-growing companies often face [pain] — is that something you deal with?"<br><br>السر: سؤال في النهاية / Secret: end with a question — let them talk 70%</div>
+    </div>
+    <div class="cs" style="background:var(--gd);border-color:var(--gold)" onclick="this.querySelector('.cs-ex').classList.toggle('hidden')">
+      <div style="font-size:12px;font-weight:600;color:var(--gold)" class="nl" data-ar="المرحلة 3 — SPIN الاكتشاف (1-4 دقائق)" data-en="Stage 3 — SPIN Discovery (1-4 min)">المرحلة 3 — SPIN الاكتشاف</div>
+      <div class="cs-ex hidden">S: "كيف تديرون [العملية] الحين؟ / How do you currently handle [process]?"<br>P: "وهذا يسبب تحديات في إيش؟ / What challenges does that create?"<br>I: "يأثر على المبيعات أو العملاء؟ / Does it impact revenue or customer satisfaction?"<br>N: "لو اتحل — إيش يتغير؟ / If this were solved, what would change for you?"<br><br>صمت بعد N — خليه يتخيل الحل / Silence after N — let them visualize the solution</div>
+    </div>
+    <div class="cs" style="background:var(--pd);border-color:var(--purple)" onclick="this.querySelector('.cs-ex').classList.toggle('hidden')">
+      <div style="font-size:12px;font-weight:600;color:var(--purple)" class="nl" data-ar="المرحلة 4 — ربط الحل (4-7 دقائق)" data-en="Stage 4 — Solution Bridge (4-7 min)">المرحلة 4 — ربط الحل</div>
+      <div class="cs-ex hidden">AR: "شركة مشابهة لكم حللنا عمليتهم وطبقنا AI بسيط — وفروا X ساعة أسبوعياً وزادوا Y%. هل تعطيني 30 دقيقة الأسبوع القادم؟"<br>EN: "A similar company — we mapped their process and applied a simple AI solution. They saved X hours/week and grew revenue by Y%. Can I get 30 minutes next week?"<br><br>لا تذكر السعر / Never mention price here — sell the meeting only</div>
+    </div>
+    <div class="cs" style="background:var(--greenD);border-color:var(--green)" onclick="this.querySelector('.cs-ex').classList.toggle('hidden')">
+      <div style="font-size:12px;font-weight:600;color:var(--green)" class="nl" data-ar="المرحلة 5 — الإغلاق (7-10 دقائق)" data-en="Stage 5 — Close (7-10 min)">المرحلة 5 — الإغلاق</div>
+      <div class="cs-ex hidden">AR: "ممتاز — الأحد الساعة 10 صباح، أو الثلاثاء الساعة 4 مساء؟"<br>EN: "Great — would Sunday at 10am or Tuesday at 4pm work better for you?"<br><br>دائماً خيارين محددين — لا تسأل "إيش يناسبك؟" / Always 2 specific options — never ask "What works for you?"<br>بعد الموافقة: "ممتاز — رقمك / Great — your number?" → احصل على رقمه / get their number</div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="stitle nl" data-ar="الجملة الذهبية التي تفتح كل باب" data-en="The Golden Phrase That Opens Every Door">الجملة الذهبية</div>
+      <div class="msg-area" id="gold-phrase" style="color:var(--gold);border-color:rgba(232,184,75,.3);font-size:13px;font-weight:500">AR: "ما أبيعك شيء — أبغى أفهم وضعكم وأشوف إذا كنت قادر أفيدكم. وإذا ما قدرت، بقولك بصراحة."
+
+EN: "I am not here to sell you anything — I want to understand your situation and see if I can genuinely help. And if I can't, I'll be upfront about it."</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="copyEl('gold-phrase')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL TEMPLATES -->
+<div id="pg-email" class="page">
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="badge bt nl" data-ar="بريد أول" data-en="First Email">بريد أول</span><button class="btn btn-ghost btn-sm" onclick="copyEl('e1')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button></div>
+      <div style="font-size:11px;color:var(--muted2);margin-bottom:5px" class="nl" data-ar="الموضوع: فكرة لـ [الشركة] تستحق 5 دقائق" data-en="Subject: An idea for [Company] worth 5 minutes">الموضوع / Subject: فكرة لـ [الشركة] تستحق 5 دقائق</div>
+      <div class="msg-area" id="e1" style="font-size:12px">AR — أهلاً [الاسم]،
+رأيت [الشركة] في قطاع [القطاع] — كم ساعة يومياً يصرف فريقكم على [العملية المتكررة]؟
+ساعدت شركات مشابهة توفر 15-20 ساعة أسبوعياً بـ AI — بدون تعقيدات تقنية. لو هذا مثير للاهتمام أقدر أشارككم تقرير قصير. لا إلزام.
+[اسمك] | [الجوال]
+
+EN — Hi [Name],
+I came across [Company] in the [sector] space — how many hours a week does your team spend on [repetitive task]?
+I've helped similar companies save 15-20 hours/week using AI — no technical headaches. If this sounds interesting, I can share a short report. No commitment.
+[Your Name] | [Phone]</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="badge bg nl" data-ar="متابعة" data-en="Follow-Up">متابعة</span><button class="btn btn-ghost btn-sm" onclick="copyEl('e2')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button></div>
+      <div class="msg-area" id="e2" style="font-size:12px">AR — أهلاً [الاسم]، سؤال واحد: هل [المشكلة] لا تزال تمثل تحدياً لكم؟
+إذا نعم، عندي فكرة تفيدكم في 15 دقيقة. إذا لا، أخبرني وما أزعجك. [اسمك]
+
+EN — Hi [Name], one quick question: Is [pain point] still a challenge for your team?
+If yes, I have an idea worth 15 minutes. If no, just let me know and I'll leave you alone. [Your Name]</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="badge bb nl" data-ar="بعد الاجتماع" data-en="Post-Meeting">بعد الاجتماع</span><button class="btn btn-ghost btn-sm" onclick="copyEl('e3')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button></div>
+      <div class="msg-area" id="e3" style="font-size:12px">AR — أهلاً [الاسم]، شكراً على وقتكم. ملخص:
+← التحدي: [المشكلة] ← الحل: [الحل] ← المدة: [المدة] ← الخطوة التالية: [الإجراء]
+سأرسل العرض الرسمي خلال [المدة]. [اسمك]
+
+EN — Hi [Name], thank you for your time. Summary:
+← Challenge: [pain] ← Solution: [solution] ← Timeline: [timeline] ← Next step: [action]
+I'll send the formal proposal within [timeframe]. [Your Name]</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="badge bo nl" data-ar="طلب Referral" data-en="Referral Request">طلب Referral</span><button class="btn btn-ghost btn-sm" onclick="copyEl('e4')"><span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button></div>
+      <div class="msg-area" id="e4" style="font-size:12px">AR — أهلاً [الاسم]، سعيد بالنتائج اللي حققناها — [النتيجة]. هل تعرفون شركات أخرى تواجه تحديات مشابهة؟ أي عميل يجي بتوصيتكم يحصل على تخفيض 10%. [اسمك]
+
+EN — Hi [Name], really happy with the results we've achieved — [outcome]. Do you know other companies facing similar challenges? Any client you refer gets a 10% discount. [Your Name]</div>
+    </div>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div id="pg-objections" class="page"><div id="obs-wrap"></div></div>
+<!-- PACKAGES -->
+<div id="pg-packages" class="page">
+  <div class="g3" style="margin-bottom:12px">
+    <div class="pkg">
+      <div style="font-size:15px;font-weight:600;color:var(--teal);margin-bottom:4px">Starter</div>
+      <div style="font-size:22px;font-weight:600;color:var(--teal);margin-bottom:4px">12,000 <span style="font-size:12px">SAR</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px" class="nl" data-ar="تجريبي / 4 أسابيع" data-en="Pilot / 4 Weeks">تجريبي / 4 أسابيع</div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تحليل العمليات الحالية" data-en="Current process analysis">تحليل العمليات الحالية</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تحديد 3 فرص AI" data-en="Identify 3 AI opportunities">تحديد 3 فرص AI</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تطبيق حل واحد" data-en="Implement 1 solution">تطبيق حل واحد</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تقرير نهائي + توصيات" data-en="Final report + recommendations">تقرير نهائي + توصيات</span></div>
+      <div style="margin-top:10px;padding:6px;background:var(--td);border-radius:var(--r3);font-size:10px;color:var(--teal);text-align:center" class="nl" data-ar="مثالية لكسر الجليد" data-en="Perfect for breaking the ice">مثالية لكسر الجليد</div>
+    </div>
+    <div class="pkg feat" style="position:relative">
+      <div class="pkg-best nl" data-ar="الأكثر مبيعاً" data-en="Best Seller">الأكثر مبيعاً</div>
+      <div style="font-size:15px;font-weight:600;color:var(--gold);margin-bottom:4px">Professional</div>
+      <div style="font-size:22px;font-weight:600;color:var(--gold);margin-bottom:4px">35,000 <span style="font-size:12px">SAR</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px" class="nl" data-ar="كامل / 6-8 أسابيع" data-en="Full / 6-8 Weeks">كامل / 6-8 أسابيع</div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="كل ما في Starter" data-en="Everything in Starter">كل ما في Starter</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تطبيق 2-3 حلول AI" data-en="Implement 2-3 AI solutions">تطبيق 2-3 حلول AI</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تدريب الفريق" data-en="Team training">تدريب الفريق</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="دعم 30 يوم" data-en="30-day support">دعم 30 يوم</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="لوحة تحكم ومتابعة" data-en="Dashboard & monitoring">لوحة تحكم ومتابعة</span></div>
+      <div style="margin-top:10px;padding:6px;background:var(--gd);border-radius:var(--r3);font-size:10px;color:var(--gold);text-align:center" class="nl" data-ar="أفضل ROI للطرفين" data-en="Best ROI for both parties">أفضل ROI للطرفين</div>
+    </div>
+    <div class="pkg">
+      <div style="font-size:15px;font-weight:600;color:var(--purple);margin-bottom:4px">Enterprise</div>
+      <div style="font-size:22px;font-weight:600;color:var(--purple);margin-bottom:4px">80,000+ <span style="font-size:12px">SAR</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px" class="nl" data-ar="تحول كامل / 3-6 أشهر" data-en="Full Transformation / 3-6 Months">تحول كامل / 3-6 أشهر</div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="تحول رقمي شامل" data-en="Full digital transformation">تحول رقمي شامل</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="فريق AI داخلي" data-en="Internal AI team">فريق AI داخلي</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="أنظمة مخصصة" data-en="Custom systems">أنظمة مخصصة</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="دعم 6 أشهر" data-en="6-month support">دعم 6 أشهر</span></div>
+      <div class="pkg-feat"><i class="ti ti-check"></i><span class="nl" data-ar="SLA رسمي" data-en="Formal SLA">SLA رسمي</span></div>
+      <div style="margin-top:10px;padding:6px;background:var(--pd);border-radius:var(--r3);font-size:10px;color:var(--purple);text-align:center" class="nl" data-ar="للتحول الكامل" data-en="For full transformation">للتحول الكامل</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="stitle nl" data-ar="Retainer الشهري — دخل ثابت" data-en="Monthly Retainer — Recurring Revenue">Retainer الشهري — دخل ثابت</div>
+    <div class="g3">
+      <div class="card2" style="text-align:center"><div style="font-size:16px;font-weight:600;color:var(--teal)">5,000 SAR<span style="font-size:10px;color:var(--muted)">/mo</span></div><div style="font-size:10px;color:var(--muted);margin-top:3px" class="nl" data-ar="Basic — 10 ساعات دعم" data-en="Basic — 10 hrs support">Basic — 10 ساعات دعم</div></div>
+      <div class="card2" style="text-align:center;border:1px solid rgba(232,184,75,.3)"><div style="font-size:16px;font-weight:600;color:var(--gold)">10,000 SAR<span style="font-size:10px;color:var(--muted)">/mo</span></div><div style="font-size:10px;color:var(--muted);margin-top:3px" class="nl" data-ar="Standard — 20 ساعة + تقرير" data-en="Standard — 20 hrs + report">Standard — 20 ساعة + تقرير</div></div>
+      <div class="card2" style="text-align:center"><div style="font-size:16px;font-weight:600;color:var(--purple)">20,000 SAR<span style="font-size:10px;color:var(--muted)">/mo</span></div><div style="font-size:10px;color:var(--muted);margin-top:3px" class="nl" data-ar="Premium — مستشار AI داخلي" data-en="Premium — Embedded AI advisor">Premium — مستشار AI داخلي</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING CALCULATOR -->
+<div id="pg-pricing" class="page">
+  <div class="g2">
+    <div class="card">
+      <div class="stitle nl" data-ar="احسب سعر مشروعك" data-en="Calculate Your Project Price">احسب سعر مشروعك</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div class="lbl nl" data-ar="عدد ساعات العمل" data-en="Estimated Work Hours">عدد ساعات العمل</div><div style="display:flex;align-items:center;gap:10px;margin-top:5px"><input type="range" id="p-h" min="10" max="200" value="40" step="5" oninput="calcPrice()"><span style="font-size:12px;font-weight:500;min-width:70px;color:var(--white)" id="p-h-out">40 hrs</span></div></div>
+        <div><div class="lbl nl" data-ar="سعر الساعة (SAR)" data-en="Hourly Rate (SAR)">سعر الساعة (SAR)</div><div style="display:flex;align-items:center;gap:10px;margin-top:5px"><input type="range" id="p-r" min="100" max="800" value="250" step="50" oninput="calcPrice()"><span style="font-size:12px;font-weight:500;min-width:70px;color:var(--white)" id="p-r-out">250 SAR</span></div></div>
+        <div><div class="lbl nl" data-ar="مصاريف الأدوات" data-en="Tool & API Costs">مصاريف الأدوات</div><div style="display:flex;align-items:center;gap:10px;margin-top:5px"><input type="range" id="p-c" min="5" max="30" value="15" step="5" oninput="calcPrice()"><span style="font-size:12px;font-weight:500;min-width:70px;color:var(--white)" id="p-c-out">15%</span></div></div>
+        <div><div class="lbl nl" data-ar="هامش الربح" data-en="Profit Margin">هامش الربح</div><div style="display:flex;align-items:center;gap:10px;margin-top:5px"><input type="range" id="p-m" min="20" max="60" value="35" step="5" oninput="calcPrice()"><span style="font-size:12px;font-weight:500;min-width:70px;color:var(--white)" id="p-m-out">35%</span></div></div>
+        <div><div class="lbl nl" data-ar="نوع المشروع" data-en="Project Type">نوع المشروع</div>
+          <select id="p-t" onchange="calcPrice()">
+            <option value="1" class="nl" data-ar="استشارة وتحليل" data-en="Consulting & Analysis">استشارة وتحليل / Consulting</option>
+            <option value="1.3" class="nl" data-ar="تطبيق حل بسيط" data-en="Simple AI Implementation">تطبيق حل بسيط / Simple AI</option>
+            <option value="1.6" class="nl" data-ar="نظام كامل" data-en="Full Custom System">نظام كامل / Full System</option>
+            <option value="2" class="nl" data-ar="مشروع مؤسسي" data-en="Enterprise Project">مشروع مؤسسي / Enterprise</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="نتيجة التسعير" data-en="Pricing Result">نتيجة التسعير</div>
+      <div style="text-align:center;padding:18px;background:var(--bg3);border-radius:var(--r2);margin-bottom:12px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:5px" class="nl" data-ar="السعر الموصى به" data-en="Recommended Price">السعر الموصى به</div>
+        <div style="font-size:34px;font-weight:600;color:var(--gold)" id="p-rec">—</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">SAR</div>
+      </div>
+      <div class="g2" style="gap:8px;margin-bottom:10px">
+        <div class="card2" style="text-align:center"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="الحد الأدنى" data-en="Minimum">الحد الأدنى</div><div style="font-size:18px;font-weight:600;color:var(--teal)" id="p-min">—</div></div>
+        <div class="card2" style="text-align:center"><div style="font-size:10px;color:var(--muted);margin-bottom:3px" class="nl" data-ar="السعر المرتفع" data-en="Premium Rate">السعر المرتفع</div><div style="font-size:18px;font-weight:600;color:var(--orange)" id="p-max">—</div></div>
+      </div>
+      <div class="card2" id="p-breakdown" style="font-size:11px;line-height:1.9;margin-bottom:8px"></div>
+      <div class="tip-box" id="p-advice"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CRM -->
+<div id="pg-crm" class="page">
+  <div class="g4" style="margin-bottom:12px">
+    <div class="stat"><div class="stat-n" id="crm-tot">8</div><div class="stat-l nl" data-ar="إجمالي" data-en="Total">إجمالي</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--blue)" id="crm-act">5</div><div class="stat-l nl" data-ar="نشط" data-en="Active">نشط</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--orange)" id="crm-mtg">3</div><div class="stat-l nl" data-ar="اجتماع" data-en="Meeting">اجتماع</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--teal)" id="crm-cl">1</div><div class="stat-l nl" data-ar="مُغلق" data-en="Closed">مُغلق</div></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <div class="stitle" style="margin:0" class="nl" data-ar="متابعة العملاء" data-en="Client Tracker">متابعة العملاء</div>
+    <button class="btn btn-gold btn-sm" onclick="addCRMRow()"><i class="ti ti-plus"></i> <span class="nl" data-ar="إضافة" data-en="Add">إضافة</span></button>
+  </div>
+  <div class="tbl-wrap">
+    <table><thead><tr>
+      <th class="nl" data-ar="الشركة" data-en="Company">الشركة</th>
+      <th class="nl" data-ar="القطاع" data-en="Sector">القطاع</th>
+      <th class="nl" data-ar="المرحلة" data-en="Stage">المرحلة</th>
+      <th class="nl" data-ar="آخر تواصل" data-en="Last Contact">آخر تواصل</th>
+      <th class="nl" data-ar="التالي" data-en="Next">التالي</th>
+      <th class="nl" data-ar="ملاحظة" data-en="Note">ملاحظة</th>
+      <th></th>
+    </tr></thead><tbody id="crm-body"></tbody></table>
+  </div>
+  <div style="margin-top:10px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--r)">
+    <div class="lbl" style="margin-bottom:7px" class="nl" data-ar="دليل المراحل" data-en="Stage Guide">دليل المراحل</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span class="stage s0 nl" data-ar="لم يُتواصل" data-en="Not Contacted">لم يُتواصل</span>
+      <span class="stage s1 nl" data-ar="تواصل أولي" data-en="First Contact">تواصل أولي</span>
+      <span class="stage s2 nl" data-ar="رد إيجابي" data-en="Positive Reply">رد إيجابي</span>
+      <span class="stage s3 nl" data-ar="اجتماع مجدول" data-en="Meeting Booked">اجتماع مجدول</span>
+      <span class="stage s4 nl" data-ar="عرض مقدم" data-en="Proposal Sent">عرض مقدم</span>
+      <span class="stage s5 nl" data-ar="مغلق/خسرنا" data-en="Closed/Lost">مغلق/خسرنا</span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI -->
+<div id="pg-kpi" class="page">
+  <div class="g4" style="margin-bottom:12px">
+    <div class="stat"><div class="stat-n" style="color:var(--teal)" id="kp-c">0</div><div class="stat-l nl" data-ar="تواصل أرسلته" data-en="Outreach Sent">تواصل أرسلته</div><div class="pb" style="margin-top:6px"><div class="pf" id="kp-cb" style="background:var(--teal);width:0%"></div></div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--blue)" id="kp-r">0</div><div class="stat-l nl" data-ar="ردود إيجابية" data-en="Positive Replies">ردود إيجابية</div><div class="pb" style="margin-top:6px"><div class="pf" id="kp-rb" style="background:var(--blue);width:0%"></div></div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--gold)" id="kp-m">0</div><div class="stat-l nl" data-ar="اجتماعات" data-en="Meetings">اجتماعات</div><div class="pb" style="margin-top:6px"><div class="pf" id="kp-mb" style="background:var(--gold);width:0%"></div></div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--orange)" id="kp-v">0</div><div class="stat-l nl" data-ar="عقود (SAR)" data-en="Deals (SAR)">عقود (SAR)</div><div class="pb" style="margin-top:6px"><div class="pf" id="kp-vb" style="background:var(--orange);width:0%"></div></div></div>
+  </div>
+  <div class="card" style="margin-bottom:10px">
+    <div class="stitle nl" data-ar="أدخل أرقامك الأسبوعية" data-en="Enter Your Weekly Numbers">أدخل أرقامك الأسبوعية</div>
+    <div class="g4">
+      <div><div class="lbl nl" data-ar="تواصل أرسلت" data-en="Outreach Sent">تواصل</div><input type="number" id="ki1" placeholder="25" oninput="updateKPIs()"></div>
+      <div><div class="lbl nl" data-ar="ردود إيجابية" data-en="Positive Replies">ردود</div><input type="number" id="ki2" placeholder="8" oninput="updateKPIs()"></div>
+      <div><div class="lbl nl" data-ar="اجتماعات" data-en="Meetings">اجتماعات</div><input type="number" id="ki3" placeholder="3" oninput="updateKPIs()"></div>
+      <div><div class="lbl nl" data-ar="قيمة العقود" data-en="Deal Value">قيمة العقود</div><input type="number" id="ki4" placeholder="35000" oninput="updateKPIs()"></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="stitle nl" data-ar="نسب التحويل" data-en="Conversion Rates">نسب التحويل</div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px"><span class="nl" data-ar="تواصل → رد" data-en="Outreach → Reply">تواصل → رد</span><span id="cv1">—</span></div><div class="pb"><div class="pf" id="cvb1" style="background:var(--teal);width:0%"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px"><span class="nl" data-ar="رد → اجتماع" data-en="Reply → Meeting">رد → اجتماع</span><span id="cv2">—</span></div><div class="pb"><div class="pf" id="cvb2" style="background:var(--blue);width:0%"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px"><span class="nl" data-ar="اجتماع → عقد" data-en="Meeting → Deal">اجتماع → عقد</span><span id="cv3">—</span></div><div class="pb"><div class="pf" id="cvb3" style="background:var(--gold);width:0%"></div></div></div>
+    </div>
+    <div class="card"><div class="stitle nl" data-ar="توصية الأسبوع" data-en="This Week's Recommendation">توصية الأسبوع</div><div id="kpi-adv" style="font-size:12px;color:var(--muted);line-height:1.7" class="nl" data-ar="أدخل أرقامك لتظهر التوصية..." data-en="Enter your numbers to see recommendations...">أدخل أرقامك...</div></div>
+  </div>
+</div>
+
+<!-- FUNNEL -->
+<div id="pg-funnel" class="page">
+  <div class="card" style="margin-bottom:12px">
+    <div class="stitle nl" data-ar="قمع المبيعات الأسبوعي المتوقع" data-en="Expected Weekly Sales Funnel">قمع المبيعات الأسبوعي</div>
+    <div class="funnel-row"><div style="font-size:11px;color:var(--muted);width:150px" class="nl" data-ar="شركة مستهدفة" data-en="Targeted Companies">شركة مستهدفة</div><div class="fb-wrap"><div class="fb" style="width:100%;background:var(--border2)">30</div></div><div style="font-size:11px;font-weight:600;width:30px">30</div></div>
+    <div class="funnel-row"><div style="font-size:11px;color:var(--muted);width:150px" class="nl" data-ar="رد إيجابي" data-en="Positive Reply">رد إيجابي</div><div class="fb-wrap"><div class="fb" style="width:60%;background:var(--blue)">9-12</div></div><div style="font-size:11px;font-weight:600;width:30px">~10</div></div>
+    <div class="funnel-row"><div style="font-size:11px;color:var(--muted);width:150px" class="nl" data-ar="اجتماع مجدول" data-en="Meeting Booked">اجتماع مجدول</div><div class="fb-wrap"><div class="fb" style="width:33%;background:var(--teal)">5-6</div></div><div style="font-size:11px;font-weight:600;width:30px">~5</div></div>
+    <div class="funnel-row"><div style="font-size:11px;color:var(--muted);width:150px" class="nl" data-ar="عرض مقدم" data-en="Proposal Sent">عرض مقدم</div><div class="fb-wrap"><div class="fb" style="width:20%;background:var(--gold)">3-4</div></div><div style="font-size:11px;font-weight:600;width:30px">~3</div></div>
+    <div class="funnel-row"><div style="font-size:11px;color:var(--muted);width:150px" class="nl" data-ar="عقد مغلق ✓" data-en="Deal Closed ✓">عقد مغلق ✓</div><div class="fb-wrap"><div class="fb" style="width:7%;background:var(--orange);min-width:50px">1-2</div></div><div style="font-size:11px;font-weight:600;width:30px;color:var(--teal)">~1</div></div>
+  </div>
+  <div class="g3">
+    <div class="stat"><div class="stat-n" style="color:var(--teal)">15K–25K</div><div class="stat-l nl" data-ar="سعر الـ Pilot" data-en="Pilot Price (SAR)">Pilot (SAR)</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--gold)">35K–80K</div><div class="stat-l nl" data-ar="العقد الكامل" data-en="Full Deal (SAR)">Full Deal (SAR)</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--blue)">5K–15K</div><div class="stat-l nl" data-ar="Retainer شهري" data-en="Monthly Retainer">Retainer/mo</div></div>
+  </div>
+</div>
+<!-- LINKEDIN CONTENT -->
+<div id="pg-linkedin" class="page">
+  <div class="g2" style="margin-bottom:12px">
+    <div class="card">
+      <div class="stitle nl" data-ar="توليد محتوى LinkedIn يومي بالـ AI" data-en="AI-Powered Daily LinkedIn Content">توليد محتوى LinkedIn يومي بالـ AI</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><div class="lbl nl" data-ar="القطاع المستهدف" data-en="Target Sector">القطاع المستهدف</div>
+          <select id="li-sector">
+            <option value="AI consulting">استشارات AI عامة / AI Consulting</option>
+            <option value="healthcare AI Saudi Arabia">رعاية صحية / Healthcare</option>
+            <option value="retail ecommerce AI">تجزئة / Retail</option>
+            <option value="real estate AI">عقارات / Real Estate</option>
+            <option value="SME digital transformation Saudi">تحول رقمي للـ SMEs</option>
+          </select>
+        </div>
+        <div><div class="lbl nl" data-ar="نوع المحتوى" data-en="Content Type">نوع المحتوى</div>
+          <select id="li-type">
+            <option value="shocking_stat">رقم صادم يفتح النقاش</option>
+            <option value="myth_buster">كسر خرافة شائعة</option>
+            <option value="case_study">قصة نجاح عميل</option>
+            <option value="tip_list">قائمة نصائح عملية</option>
+            <option value="thought_leader">رأي خبير / قيادة فكرية</option>
+            <option value="trending_ai">أحدث تقنيات AI + تطبيقاتها</option>
+            <option value="seo_rich">محتوى غني بـ Keywords للـ SEO</option>
+          </select>
+        </div>
+        <div><div class="lbl nl" data-ar="لغة المحتوى" data-en="Content Language">لغة المحتوى</div>
+          <select id="li-lang">
+            <option value="ar">عربي (لهجة سعودية)</option>
+            <option value="en">English</option>
+            <option value="both">ثنائي — AR + EN</option>
+          </select>
+        </div>
+        <div><div class="lbl nl" data-ar="كلمات مفتاحية إضافية (اختياري)" data-en="Additional Keywords (optional)">كلمات مفتاحية إضافية</div>
+          <input type="text" id="li-keywords" placeholder="مثال: ChatGPT, automation, رؤية 2030...">
+        </div>
+        <button class="btn btn-gold" id="li-gen-btn" onclick="generateLinkedinPost()">
+          <i class="ti ti-sparkles"></i> <span class="nl" data-ar="توليد منشور جديد" data-en="Generate New Post">توليد منشور جديد</span>
+        </button>
+        <button class="btn btn-ghost" id="li-trend-btn" onclick="getTrendingTopics()">
+          <i class="ti ti-trending-up"></i> <span class="nl" data-ar="ابحث عن أحدث الترندات" data-en="Get Trending AI Topics">ابحث عن أحدث الترندات</span>
+        </button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="المنشور المُولَّد" data-en="Generated Post">المنشور المُولَّد</div>
+      <div class="msg-area" id="li-out" style="min-height:220px;font-size:12px" class="nl" data-ar="اضغط توليد لإنشاء منشور مُحسَّن لـ LinkedIn..." data-en="Click generate to create an SEO-optimized LinkedIn post...">اضغط توليد لإنشاء منشور مُحسَّن لـ LinkedIn...</div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="copyEl('li-out')"><i class="ti ti-copy"></i> <span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+        <button class="btn btn-ghost btn-sm" id="li-hook-btn" onclick="improveHook()" disabled><span class="nl" data-ar="حسّن الـ Hook" data-en="Improve Hook">حسّن الـ Hook</span></button>
+        <button class="btn btn-ghost btn-sm" id="li-seo-btn" onclick="addSEO()" disabled><span class="nl" data-ar="أضف SEO" data-en="Add SEO">أضف SEO</span></button>
+        <button class="btn btn-ghost btn-sm" id="li-short-btn" onclick="makeLinkedinShort()" disabled><span class="nl" data-ar="أقصر" data-en="Shorter">أقصر</span></button>
+      </div>
+      <div class="tip-box" id="li-tip" style="display:none"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:10px">
+    <div class="stitle nl" data-ar="أحدث الترندات في AI" data-en="Latest AI Trends">أحدث الترندات في AI</div>
+    <div id="li-trends" style="font-size:12px;color:var(--muted);line-height:1.7" class="nl" data-ar="اضغط زر الترندات لجلب أحدث المواضيع الساخنة..." data-en="Click the trends button to fetch the latest hot topics...">اضغط زر الترندات لجلب أحدث المواضيع الساخنة...</div>
+  </div>
+  <div class="card">
+    <div class="stitle nl" data-ar="جدول النشر الأمثل" data-en="Optimal Posting Schedule">جدول النشر الأمثل</div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px">
+      <div style="padding:8px 4px;background:var(--td);border-radius:var(--r2);text-align:center"><div style="font-size:10px;font-weight:600;color:var(--teal)" class="nl" data-ar="الأحد" data-en="Sun">الأحد</div><div style="font-size:9px;color:var(--muted);margin-top:2px">9-11am</div><div style="font-size:9px;color:var(--teal)">★★★</div></div>
+      <div style="padding:8px 4px;background:var(--td);border-radius:var(--r2);text-align:center"><div style="font-size:10px;font-weight:600;color:var(--teal)" class="nl" data-ar="الاثنين" data-en="Mon">الاثنين</div><div style="font-size:9px;color:var(--muted);margin-top:2px">8-10am</div><div style="font-size:9px;color:var(--teal)">★★★</div></div>
+      <div style="padding:8px 4px;background:var(--gd);border-radius:var(--r2);text-align:center"><div style="font-size:10px;font-weight:600;color:var(--gold)" class="nl" data-ar="الثلاثاء" data-en="Tue">الثلاثاء</div><div style="font-size:9px;color:var(--muted);margin-top:2px">7-9pm</div><div style="font-size:9px;color:var(--gold)">★★★</div></div>
+      <div style="padding:8px 4px;background:var(--gd);border-radius:var(--r2);text-align:center"><div style="font-size:10px;font-weight:600;color:var(--gold)" class="nl" data-ar="الأربعاء" data-en="Wed">الأربعاء</div><div style="font-size:9px;color:var(--muted);margin-top:2px">9-11am</div><div style="font-size:9px;color:var(--gold)">★★</div></div>
+      <div style="padding:8px 4px;background:var(--bg3);border-radius:var(--r2);text-align:center;opacity:.5"><div style="font-size:10px;color:var(--muted2)" class="nl" data-ar="الخميس" data-en="Thu">الخميس</div><div style="font-size:9px;color:var(--muted2);margin-top:2px">avoid</div></div>
+      <div style="padding:8px 4px;background:var(--bg3);border-radius:var(--r2);text-align:center;opacity:.4"><div style="font-size:10px;color:var(--muted2)" class="nl" data-ar="الجمعة" data-en="Fri">الجمعة</div><div style="font-size:9px;color:var(--muted2);margin-top:2px">avoid</div></div>
+      <div style="padding:8px 4px;background:var(--bg3);border-radius:var(--r2);text-align:center;opacity:.5"><div style="font-size:10px;color:var(--muted2)" class="nl" data-ar="السبت" data-en="Sat">السبت</div><div style="font-size:9px;color:var(--muted2);margin-top:2px">low</div></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- 90-DAY TIMELINE -->
+<div id="pg-timeline" class="page">
+  <div class="tl-row"><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-circ" style="background:var(--td);border:2px solid var(--teal);color:var(--teal)">1</div><div class="tl-line" style="height:50px"></div></div><div class="card" style="flex:1"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:14px;font-weight:600" class="nl" data-ar="الأسبوع 1-2 — الانطلاق" data-en="Week 1-2 — Launch">الأسبوع 1-2 — الانطلاق</div><span class="badge bt nl" data-ar="الآن" data-en="Now">الآن</span></div><div class="g2" style="gap:8px;font-size:11px"><div class="card2"><div style="color:var(--teal);font-weight:500;margin-bottom:3px" class="nl" data-ar="الهدف" data-en="Goal">الهدف</div><span class="nl" data-ar="30 تواصل + 3 اجتماعات + أول عقد Pilot" data-en="30 outreach + 3 meetings + first Pilot deal">30 تواصل + 3 اجتماعات + أول Pilot</span></div><div class="card2"><div style="color:var(--gold);font-weight:500;margin-bottom:3px" class="nl" data-ar="الدخل" data-en="Income">الدخل</div>15,000–25,000 SAR</div></div></div></div>
+  <div class="tl-row"><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-circ" style="background:var(--bd);border:2px solid var(--blue);color:var(--blue)">2</div><div class="tl-line" style="height:50px"></div></div><div class="card" style="flex:1"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:14px;font-weight:600" class="nl" data-ar="الشهر 1 — البناء" data-en="Month 1 — Building">الشهر 1 — البناء</div><span class="badge bb nl" data-ar="الأسابيع 2-4" data-en="Weeks 2-4">الأسابيع 2-4</span></div><div class="g2" style="gap:8px;font-size:11px"><div class="card2"><div style="color:var(--blue);font-weight:500;margin-bottom:3px" class="nl" data-ar="الهدف" data-en="Goal">الهدف</div><span class="nl" data-ar="أكمل Pilot + Testimonial + عقد ثانٍ" data-en="Complete Pilot + Testimonial + 2nd deal">أكمل Pilot + Testimonial + عقد ثانٍ</span></div><div class="card2"><div style="color:var(--gold);font-weight:500;margin-bottom:3px" class="nl" data-ar="الدخل" data-en="Income">الدخل</div>35,000–60,000 SAR</div></div></div></div>
+  <div class="tl-row"><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-circ" style="background:var(--gd);border:2px solid var(--gold);color:var(--gold)">3</div><div class="tl-line" style="height:50px"></div></div><div class="card" style="flex:1"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:14px;font-weight:600" class="nl" data-ar="الشهر 2 — التسريع" data-en="Month 2 — Acceleration">الشهر 2 — التسريع</div><span class="badge bg nl" data-ar="الأسابيع 5-8" data-en="Weeks 5-8">الأسابيع 5-8</span></div><div class="g2" style="gap:8px;font-size:11px"><div class="card2"><div style="color:var(--gold);font-weight:500;margin-bottom:3px" class="nl" data-ar="الهدف" data-en="Goal">الهدف</div><span class="nl" data-ar="3-4 عقود + Retainer + عملاء Referral" data-en="3-4 deals + Retainer + Referral clients">3-4 عقود + Retainer + Referral</span></div><div class="card2"><div style="color:var(--gold);font-weight:500;margin-bottom:3px" class="nl" data-ar="الدخل" data-en="Income">الدخل</div>70,000–120,000 SAR</div></div></div></div>
+  <div class="tl-row"><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-circ" style="background:var(--pd);border:2px solid var(--purple);color:var(--purple)"><i class="ti ti-trophy"></i></div></div><div class="card" style="flex:1;background:var(--pd);border-color:rgba(167,139,250,.25)"><div style="font-size:14px;font-weight:600;color:var(--purple);margin-bottom:10px" class="nl" data-ar="اليوم 90 — الهدف النهائي" data-en="Day 90 — Final Goal">اليوم 90 — الهدف النهائي</div><div class="g3" style="gap:8px;text-align:center;font-size:11px"><div class="card2"><div style="font-size:22px;font-weight:600;color:var(--purple)">+7</div><div style="color:var(--muted)" class="nl" data-ar="عملاء نشطين" data-en="Active Clients">عملاء نشطين</div></div><div class="card2"><div style="font-size:22px;font-weight:600;color:var(--gold)">150K+</div><div style="color:var(--muted)">SAR/mo</div></div><div class="card2"><div style="font-size:22px;font-weight:600;color:var(--teal)" class="nl" data-ar="برند" data-en="Brand">برند</div><div style="color:var(--muted)" class="nl" data-ar="معروف في السوق" data-en="Recognized in Market">معروف في السوق</div></div></div></div></div>
+</div>
+
+<!-- AI TOOLS -->
+<div id="pg-tools" class="page">
+  <div style="margin-bottom:10px;padding:9px 12px;background:var(--bd);border:1px solid rgba(75,158,255,.2);border-radius:var(--r2);font-size:11px;color:var(--blue)" class="nl" data-ar="هذه الأدوات تساعدك تبني حلول AI لعملائك بدون برمجة معقدة" data-en="These tools help you build AI solutions for clients without complex coding">هذه الأدوات تساعدك تبني حلول AI لعملائك بدون برمجة معقدة</div>
+  <div class="lbl" style="margin-bottom:7px" class="nl" data-ar="أدوات بناء الحلول" data-en="Solution Building Tools">أدوات بناء الحلول</div>
+  <div class="card2" style="margin-bottom:7px"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Make.com</div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="أتمتة العمليات بين الأنظمة — وصّل واتساب بـ Google Sheets بـ AI تلقائياً." data-en="Automate workflows between systems — connect WhatsApp, Google Sheets, and AI automatically.">أتمتة العمليات بين الأنظمة — الأقوى للـ SMEs.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ أتمتة الطلبات، تقارير تلقائية، ربط الأنظمة" data-en="→ Order automation, auto-reports, system integration">→ أتمتة الطلبات، تقارير تلقائية</div></div>
+  <div class="card2" style="margin-bottom:7px"><div style="font-size:12px;font-weight:500;margin-bottom:3px">n8n <span style="font-size:10px;color:var(--teal)" class="nl" data-ar="(مجاني ومفتوح)" data-en="(Free & Open Source)">(مجاني ومفتوح)</span></div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="بديل Make مجاني — قابل للاستضافة الذاتية." data-en="Free Make alternative — self-hostable.">بديل Make مجاني — قابل للاستضافة الذاتية.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ أتمتة البريد، CRM، جمع البيانات" data-en="→ Email automation, CRM, data collection">→ أتمتة البريد، CRM، جمع البيانات</div></div>
+  <div class="card2" style="margin-bottom:7px"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Voiceflow / Botpress</div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="بناء chatbots ذكية بالعربي والإنجليزي بدون كود." data-en="Build smart chatbots in Arabic & English with no code.">بناء chatbots ذكية بدون كود.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ خدمة عملاء 24/7، جدولة مواعيد" data-en="→ 24/7 customer support, appointment scheduling">→ خدمة عملاء 24/7، جدولة مواعيد</div></div>
+  <div class="lbl" style="margin:10px 0 7px" class="nl" data-ar="أدوات التسويق والمبيعات" data-en="Marketing & Sales Tools">أدوات التسويق والمبيعات</div>
+  <div class="card2" style="margin-bottom:7px"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Apollo.io</div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="ابحث عن البريد الإلكتروني لأي مدير في أي شركة." data-en="Find the email of any decision-maker at any company.">ابحث عن البريد الإلكتروني لأي مدير في أي شركة.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ إيجاد صناع القرار" data-en="→ Find decision-makers">→ إيجاد صناع القرار</div></div>
+  <div class="card2" style="margin-bottom:7px"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Dify.ai</div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="منصة بناء تطبيقات AI بدون كود — RAG كامل." data-en="No-code AI app platform — full RAG system.">منصة بناء تطبيقات AI بدون كود.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ قاعدة معرفة داخلية، أسئلة وأجوبة" data-en="→ Internal knowledge base, Q&A system">→ قاعدة معرفة داخلية</div></div>
+  <div class="card2"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Claude API (Anthropic)</div><div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.6" class="nl" data-ar="ادمجه في حلولك لتحليل النصوص وتوليد التقارير." data-en="Integrate for text analysis, report generation, smart chatbots.">ادمجه في حلولك لتحليل النصوص وتوليد التقارير.</div><div style="font-size:10px;color:var(--teal)" class="nl" data-ar="→ تحليل عقود، توليد تقارير، chatbot ذكي" data-en="→ Contract analysis, report generation, smart chatbot">→ تحليل عقود، chatbot ذكي</div></div>
+</div>
+
+<!-- TIPS -->
+<div id="pg-tips" class="page">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">🎯</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="سلاح الـ Audit المجاني" data-en="The Free Audit Weapon">سلاح الـ Audit المجاني</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="قدم تقييم مجاني لعمليات الشركة. يبني الثقة ويجعلك مستشاراً لا بائعاً — البيع يصير طبيعياً بعدها." data-en="Offer a free process audit. It builds trust and positions you as an advisor, not a seller — the sale happens naturally.">قدم تقييم مجاني لعمليات الشركة. يبني الثقة ويجعلك مستشاراً لا بائعاً.</div></div>
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">📸</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="LinkedIn Profile أولاً" data-en="LinkedIn Profile First">LinkedIn Profile أولاً</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar='عنوانك: "مستشار AI للشركات السعودية" + 3 منشورات تثبت خبرتك قبل أي تواصل.' data-en='"AI Consultant for Saudi Businesses" + 3 posts proving expertise before any outreach.'>عنوانك: "مستشار AI للشركات السعودية" + 3 منشورات خبرة قبل التواصل.</div></div>
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">🏆</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="Case Study ولو افتراضي" data-en="Case Study — Even Hypothetical">Case Study ولو افتراضي</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar='"شركة تجزئة في الرياض وفرت 3 ساعات يومياً." القصة تبيع أكثر من الأرقام.' data-en='"A Riyadh retail company saved 3 hours daily." Stories sell more than raw numbers.'>"شركة في الرياض وفرت 3 ساعات يومياً." القصة تبيع أكثر من الأرقام.</div></div>
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">⏰</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="توقيت الإرسال" data-en="Sending Timing">توقيت الإرسال</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="الأحد-الثلاثاء 9-11 صباحاً أو 4-6 مساءً. تجنب الخميس والجمعة." data-en="Sun-Tue 9-11am or 4-6pm. Avoid Thu-Fri.">الأحد-الثلاثاء 9-11 صباحاً أو 4-6 مساءً. تجنب الخميس والجمعة.</div></div>
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">🤝</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="Pilot يفتح الباب" data-en="Pilot Opens the Door">Pilot يفتح الباب</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar="مشروع تجريبي بسعر رمزي. بعد ما يروا النتيجة، الباقة الكاملة تباع نفسها." data-en="Trial project at low price. Once they see results, the full package sells itself.">مشروع تجريبي بسعر رمزي. بعد النتيجة، الباقة تباع نفسها.</div></div>
+    <div class="card"><div style="font-size:18px;margin-bottom:7px">🔁</div><div style="font-size:12px;font-weight:500;margin-bottom:5px" class="nl" data-ar="Referral من أول عميل" data-en="Referral from First Client">Referral من أول عميل</div><div style="font-size:11px;color:var(--muted);line-height:1.7" class="nl" data-ar='بعد الإغلاق مباشرة: "هل تعرف شركات تستفيد من نفس الشيء؟"' data-en='Right after closing: "Do you know companies that could benefit from the same?"'>بعد الإغلاق مباشرة: "هل تعرف شركات تستفيد من نفس الشيء؟"</div></div>
+  </div>
+  <div class="card">
+    <div class="stitle nl" data-ar="الجملة السحرية التي تغلق كل باب مقفل" data-en="The Magic Phrase That Opens Every Closed Door">الجملة السحرية</div>
+    <div class="msg-area" id="gold-tips" style="color:var(--gold);border-color:rgba(232,184,75,.3);font-size:13px;font-weight:500">AR: "ما أبيعك شيء — أبغى أفهم وضعكم وأشوف إذا كنت قادر أفيدكم أصلاً. وإذا ما قدرت، بقولك بصراحة."
+
+EN: "I am not here to sell you anything — I want to understand your situation and genuinely see if I can help. And if I can't, I will be honest with you."</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6" class="nl" data-ar="هذه الجملة تزيل كل مقاومة لأنها تعكس صدقاً حقيقياً — استخدمها في أول 30 ثانية من كل اتصال." data-en="This phrase removes all resistance because it projects genuine honesty — use it in the first 30 seconds of every call.">هذه الجملة تزيل كل مقاومة — استخدمها في أول 30 ثانية من كل اتصال.</div>
+  </div>
+</div>
+  
+<!-- AUTOMATION BUILDER -->
+<div id="pg-builder" class="page">
+  <div style="margin-bottom:12px;padding:10px 14px;background:var(--td);border:1px solid rgba(0,201,167,.2);border-radius:var(--r2);font-size:12px;color:var(--teal)">
+    🤖 <span class="nl" data-ar="صف للـ AI الأتمتة التي تريدها وسيبني لك سير العمل الكامل مع الأدوات والخطوات" data-en="Describe the automation you want and AI will build you a complete workflow with tools and steps">صف للـ AI الأتمتة التي تريدها وسيبني لك سير العمل الكامل مع الأدوات والخطوات</span>
+  </div>
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="stitle nl" data-ar="صف الأتمتة التي تريدها" data-en="Describe Your Automation">صف الأتمتة التي تريدها</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div><div class="lbl nl" data-ar="قطاع العميل" data-en="Client Sector">قطاع العميل</div>
+            <select id="bld-sector">
+              <option>الرعاية الصحية / Healthcare</option>
+              <option>التجزئة / Retail</option>
+              <option>المطاعم / F&B</option>
+              <option>العقارات / Real Estate</option>
+              <option>التعليم / Education</option>
+              <option>اللوجستيات / Logistics</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="صف المشكلة أو العملية" data-en="Describe the Problem or Process">صف المشكلة أو العملية</div>
+            <textarea id="bld-desc" rows="4" placeholder="مثال: عيادة تريد أتمتة جدولة المواعيد وإرسال تذكيرات للمرضى على واتساب تلقائياً..."></textarea>
+          </div>
+          <div><div class="lbl nl" data-ar="الأدوات المتاحة عند العميل" data-en="Tools Client Already Has">الأدوات المتاحة</div>
+            <input type="text" id="bld-tools" placeholder="مثال: واتساب، Google Sheets، موقع ويب...">
+          </div>
+          <div><div class="lbl nl" data-ar="ميزانية التطبيق التقريبية" data-en="Approx. Implementation Budget">ميزانية التطبيق</div>
+            <select id="bld-budget">
+              <option>أقل من 5,000 ريال / Under 5K SAR</option>
+              <option>5,000 - 15,000 ريال / 5K-15K SAR</option>
+              <option>15,000 - 35,000 ريال / 15K-35K SAR</option>
+              <option>أكثر من 35,000 ريال / 35K+ SAR</option>
+            </select>
+          </div>
+          <button class="btn btn-gold" id="bld-btn" onclick="buildAutomation()">
+            <i class="ti ti-wand"></i> <span class="nl" data-ar="ابنِ سير العمل بالـ AI" data-en="Build Workflow with AI">ابنِ سير العمل بالـ AI</span>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stitle nl" data-ar="أمثلة جاهزة" data-en="Ready Examples">أمثلة جاهزة</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="sc-card" onclick="fillAutomation(this,'عيادة طبية','أتمتة المواعيد: استقبال طلب موعد على واتساب، تسجيله في Google Sheets، إرسال تأكيد للمريض وتذكير قبل الموعد بيوم','واتساب، Google Sheets')">
+            <div style="font-size:12px;font-weight:500">🏥 <span class="nl" data-ar="أتمتة مواعيد العيادة" data-en="Clinic Appointment Automation">أتمتة مواعيد العيادة</span></div>
+            <div style="font-size:10px;color:var(--muted)" class="nl" data-ar="واتساب + Google Sheets + تذكيرات" data-en="WhatsApp + Google Sheets + Reminders">واتساب + Google Sheets + تذكيرات</div>
+          </div>
+          <div class="sc-card" onclick="fillAutomation(this,'محل تجزئة','أتمتة الطلبات: استقبال الطلب من الموقع، تحديث المخزون تلقائياً، إرسال فاتورة للعميل وإشعار للتوصيل','موقع ويب، Excel، واتساب')">
+            <div style="font-size:12px;font-weight:500">🛒 <span class="nl" data-ar="أتمتة طلبات التجزئة" data-en="Retail Order Automation">أتمتة طلبات التجزئة</span></div>
+            <div style="font-size:10px;color:var(--muted)" class="nl" data-ar="موقع + مخزون + توصيل" data-en="Website + Inventory + Delivery">موقع + مخزون + توصيل</div>
+          </div>
+          <div class="sc-card" onclick="fillAutomation(this,'مطعم','أتمتة الطلبات والمخزون: استقبال طلبات من إنستغرام وواتساب، تحديث المخزون، إشعار المطبخ تلقائياً','واتساب، إنستغرام، Google Sheets')">
+            <div style="font-size:12px;font-weight:500">🍽️ <span class="nl" data-ar="أتمتة طلبات المطعم" data-en="Restaurant Order Automation">أتمتة طلبات المطعم</span></div>
+            <div style="font-size:10px;color:var(--muted)" class="nl" data-ar="واتساب + إنستغرام + المطبخ" data-en="WhatsApp + Instagram + Kitchen">واتساب + إنستغرام + المطبخ</div>
+          </div>
+          <div class="sc-card" onclick="fillAutomation(this,'شركة عقارات','أتمتة العملاء المحتملين: استقبال استفسارات من الموقع، تأهيل العميل تلقائياً بالـ AI، إرسال عقارات مناسبة، جدولة معاينة','موقع ويب، إيميل، واتساب')">
+            <div style="font-size:12px;font-weight:500">🏢 <span class="nl" data-ar="أتمتة عملاء العقارات" data-en="Real Estate Lead Automation">أتمتة عملاء العقارات</span></div>
+            <div style="font-size:10px;color:var(--muted)" class="nl" data-ar="موقع + AI تأهيل + جدولة" data-en="Website + AI Qualification + Scheduling">موقع + AI تأهيل + جدولة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="سير العمل المُولَّد" data-en="Generated Workflow">سير العمل المُولَّد</div>
+      <div class="msg-area" id="bld-out" style="min-height:340px;font-size:12px" class="nl" data-ar="صف الأتمتة وسيبني لك AI خطوات التطبيق الكاملة..." data-en="Describe the automation and AI will build complete implementation steps...">صف الأتمتة وسيبني لك AI خطوات التطبيق الكاملة...</div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <button class="btn btn-ghost btn-sm" onclick="copyEl('bld-out')"><i class="ti ti-copy"></i> <span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+        <button class="btn btn-teal btn-sm" id="bld-price-btn" onclick="estimateAutomationPrice()" disabled><span class="nl" data-ar="احسب التكلفة" data-en="Estimate Cost">احسب التكلفة</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT BUILDER -->
+<div id="pg-chatbot" class="page">
+  <div style="margin-bottom:12px;padding:10px 14px;background:var(--pd);border:1px solid rgba(167,139,250,.2);border-radius:var(--r2);font-size:12px;color:var(--purple)">
+    💬 <span class="nl" data-ar="صمّم chatbot كامل لعميلك — AI سيكتب لك الأسئلة والردود والمنطق الكامل بدون كود" data-en="Design a complete chatbot for your client — AI writes all questions, replies, and logic with no code">صمّم chatbot كامل لعميلك — AI سيكتب لك الأسئلة والردود والمنطق الكامل بدون كود</span>
+  </div>
+  <div class="g2">
+    <div>
+      <div class="card" style="margin-bottom:10px">
+        <div class="stitle nl" data-ar="إعداد الشات بوت" data-en="Chatbot Setup">إعداد الشات بوت</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div><div class="lbl nl" data-ar="نوع الشات بوت" data-en="Chatbot Type">نوع الشات بوت</div>
+            <select id="cb-type">
+              <option value="appointment">جدولة مواعيد / Appointment Booking</option>
+              <option value="customer_service">خدمة عملاء / Customer Service</option>
+              <option value="sales_qualify">تأهيل عملاء / Lead Qualification</option>
+              <option value="faq">أسئلة شائعة / FAQ Bot</option>
+              <option value="order_tracking">تتبع الطلبات / Order Tracking</option>
+              <option value="real_estate">استفسارات عقارية / Real Estate Inquiries</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="اسم الشركة / المنشأة" data-en="Company / Business Name">اسم الشركة</div>
+            <input type="text" id="cb-name" placeholder="مثال: عيادات النخبة">
+          </div>
+          <div><div class="lbl nl" data-ar="القطاع والخدمات الرئيسية" data-en="Sector & Main Services">القطاع والخدمات</div>
+            <input type="text" id="cb-services" placeholder="مثال: عيادة طب عام، أسنان، نساء وولادة">
+          </div>
+          <div><div class="lbl nl" data-ar="لغة الشات بوت" data-en="Chatbot Language">اللغة</div>
+            <select id="cb-lang">
+              <option value="ar">عربي (سعودي)</option>
+              <option value="en">English</option>
+              <option value="both">ثنائي — AR + EN</option>
+            </select>
+          </div>
+          <div><div class="lbl nl" data-ar="منصة النشر" data-en="Deployment Platform">منصة النشر</div>
+            <select id="cb-platform">
+              <option>واتساب / WhatsApp</option>
+              <option>موقع ويب / Website</option>
+              <option>إنستغرام / Instagram</option>
+              <option>تيليغرام / Telegram</option>
+            </select>
+          </div>
+          <button class="btn btn-gold" id="cb-gen-btn" onclick="generateChatbot()">
+            <i class="ti ti-message-circle"></i> <span class="nl" data-ar="صمّم الشات بوت بالـ AI" data-en="Design Chatbot with AI">صمّم الشات بوت بالـ AI</span>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stitle nl" data-ar="أدوات البناء المجانية الموصى بها" data-en="Recommended Free Building Tools">أدوات البناء المجانية</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="card2" style="border-right:3px solid var(--teal)">
+            <div style="font-size:12px;font-weight:500;color:var(--teal)">Voiceflow</div>
+            <div style="font-size:11px;color:var(--muted)">drag & drop — مجاني للمشاريع الصغيرة</div>
+            <div style="font-size:10px;color:var(--blue)">→ voiceflow.com</div>
+          </div>
+          <div class="card2" style="border-right:3px solid var(--gold)">
+            <div style="font-size:12px;font-weight:500;color:var(--gold)">Botpress</div>
+            <div style="font-size:11px;color:var(--muted)">مفتوح المصدر — دعم عربي ممتاز</div>
+            <div style="font-size:10px;color:var(--blue)">→ botpress.com</div>
+          </div>
+          <div class="card2" style="border-right:3px solid var(--blue)">
+            <div style="font-size:12px;font-weight:500;color:var(--blue)">Make.com + OpenAI</div>
+            <div style="font-size:11px;color:var(--muted)">ربط واتساب بـ AI بدون كود</div>
+            <div style="font-size:10px;color:var(--blue)">→ make.com</div>
+          </div>
+          <div class="card2" style="border-right:3px solid var(--purple)">
+            <div style="font-size:12px;font-weight:500;color:var(--purple)">Dify.ai</div>
+            <div style="font-size:11px;color:var(--muted)">بناء RAG + chatbot بدون كود</div>
+            <div style="font-size:10px;color:var(--blue)">→ dify.ai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stitle nl" data-ar="تصميم الشات بوت المُولَّد" data-en="Generated Chatbot Design">تصميم الشات بوت المُولَّد</div>
+      <div class="msg-area" id="cb-out" style="min-height:340px;font-size:12px" class="nl" data-ar="صف الشات بوت وسيبني لك AI التصميم الكامل..." data-en="Describe the chatbot and AI will build the complete design...">صف الشات بوت وسيبني لك AI التصميم الكامل...</div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <button class="btn btn-ghost btn-sm" onclick="copyEl('cb-out')"><i class="ti ti-copy"></i> <span class="nl" data-ar="نسخ" data-en="Copy">نسخ</span></button>
+        <button class="btn btn-ghost btn-sm" id="cb-script-btn" onclick="generateChatbotScript()" disabled><span class="nl" data-ar="ولّد السكريبت الكامل" data-en="Full Script">ولّد السكريبت الكامل</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div></div></div>
+<script>
+const T={
+ar:{dash:'لوحة تحكم المبيعات',dash_s:'نظرة عامة — استشارات AI للشركات السعودية',clients:'العملاء المحتملون',clients_s:'47 شركة سعودية تحتاج AI الآن',week:'خطة الأسبوع الأول',week_s:'من البحث لأول عميل في 7 أيام',gen:'مولد الرسائل AI',gen_s:'رسالة مخصصة لكل عميل في ثوانٍ',simulator:'محاكي المكالمة الحي',simulator_s:'تدرب مع AI يلعب دور العميل الفعلي',analyzer:'تحليل العميل AI',analyzer_s:'شخصية صانع القرار وألمه ومفتاح إقناعه',coach:'مدرب المبيعات AI',coach_s:'نصائح عملية فورية للسوق السعودي',scripts:'سكريبتات التواصل',scripts_s:'كلمات تفتح كل باب',email:'قوالب البريد',email_s:'احفظها واستخدمها فوراً',objections:'مكتبة الاعتراضات',objections_s:'رد احترافي على كل اعتراض',packages:'الباقات والتسعير',packages_s:'ثلاث باقات تغطي كل نوع عميل',pricing:'حاسبة التسعير',pricing_s:'احسب سعر مشروعك بدقة',crm:'CRM المتابعة',crm_s:'تتبع كل عميل لحظة بلحظة',kpi:'مؤشرات الأداء',kpi_s:'قيس نجاحك وحسّن استراتيجيتك',funnel:'قمع المبيعات',funnel_s:'الأرقام المتوقعة لكل أسبوع',linkedin:'محتوى LinkedIn الجاهز',linkedin_s:'انشر واجذب العملاء',timeline:'خارطة طريق 90 يوم',timeline_s:'من أول عميل إلى 150K ريال شهرياً',tools:'أدوات AI المجانية',tools_s:'ابن حلول لعملائك بأقل تكلفة',tips:'أسرار الإغلاق',tips_s:'الحركات التي تضاعف نجاحك',builder:'بنّاء الأتمتة AI',builder_s:'اصنع سير عمل أتمتة لعملائك بدون كود',chatbot:'بنّاء الشات بوت',chatbot_s:'اصنع chatbot ذكي لعملائك في دقائق',badge:'7 أيام للعميل الأول',logo_sub:'استشارات الذكاء الاصطناعي',n0:'الرئيسية',n1:'التواصل الذكي',n2:'الإغلاق',n3:'المتابعة',n4:'المحتوى والنمو',copied:'تم النسخ ✓'},
+en:{dash:'Sales Dashboard',dash_s:'Overview — AI Consulting for Saudi SMEs',clients:'Prospects',clients_s:'47 Saudi companies that need AI now',week:'Week Plan',week_s:'From research to first client in 7 days',gen:'AI Message Generator',gen_s:'Custom message for every client in seconds',simulator:'Live Call Simulator',simulator_s:'Practice with AI playing the actual client role',analyzer:'AI Client Analyzer',analyzer_s:'Decision-maker profile, pain points, and persuasion key',coach:'AI Sales Coach',coach_s:'Instant actionable advice for the Saudi market',scripts:'Talk Scripts',scripts_s:'Words that open every door',email:'Email Templates',email_s:'Save and use immediately',objections:'Objections Library',objections_s:'Professional reply to every objection',packages:'Packages & Pricing',packages_s:'Three packages covering every client type',pricing:'Price Calculator',pricing_s:'Calculate your project price accurately',crm:'CRM Tracker',crm_s:'Track every client in real time',kpi:'KPIs',kpi_s:'Measure success and optimize strategy',funnel:'Sales Funnel',funnel_s:'Expected numbers for each week',linkedin:'LinkedIn Content',linkedin_s:'Post and attract clients automatically',timeline:'90-Day Roadmap',timeline_s:'From first client to 150K SAR/month',tools:'Free AI Tools',tools_s:'Build client solutions at minimum cost',tips:'Closing Secrets',tips_s:'The moves that double your success rate',builder:'Automation Builder',builder_s:'Build AI automation workflows for clients — no code',chatbot:'Chatbot Builder',chatbot_s:'Build smart chatbots for your clients in minutes',badge:'First client in 7 days',logo_sub:'AI Consulting for Saudi Businesses',n0:'Main',n1:'Smart Outreach',n2:'Closing',n3:'Tracking',n4:'Content & Growth',copied:'Copied ✓'}
+};
+let lang='ar';
+function setLang(l,btn){
+lang=l;
+document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('on'));
+btn.classList.add('on');
+const root=document.getElementById('html-root');
+if(l==='en'){root.setAttribute('lang','en');root.setAttribute('dir','ltr');document.body.style.direction='ltr';document.querySelectorAll('.sidebar,.nb,.topbar,.content').forEach(el=>el.style.direction='ltr');}
+else{root.setAttribute('lang','ar');root.setAttribute('dir','rtl');document.body.style.direction='rtl';document.querySelectorAll('.sidebar,.nb,.topbar,.content').forEach(el=>el.style.direction='rtl');}
+document.querySelectorAll('.nl').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.textContent=v;});
+document.getElementById('l-sub').textContent=T[l].logo_sub;
+document.getElementById('l-badge').textContent=T[l].badge;
+document.getElementById('n0').textContent=T[l].n0;
+document.getElementById('n1').textContent=T[l].n1;
+document.getElementById('n2').textContent=T[l].n2;
+document.getElementById('n3').textContent=T[l].n3;
+document.getElementById('n4').textContent=T[l].n4;
+const cur=document.querySelector('.page.on');
+if(cur){const pg=cur.id.replace('pg-','');if(T[l][pg]){document.getElementById('tb-t').textContent=T[l][pg];document.getElementById('tb-s').textContent=T[l][pg+'_s']||'';}}
+}
+
+const pgs=['dash','clients','week','gen','simulator','analyzer','coach','scripts','email','objections','packages','pricing','crm','kpi','funnel','linkedin','timeline','tools','tips','builder','chatbot'];
+function showPage(pg,btn){
+pgs.forEach(p=>{const el=document.getElementById('pg-'+p);if(el)el.classList.remove('on');});
+const el=document.getElementById('pg-'+pg);if(el)el.classList.add('on');
+document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+if(btn)btn.classList.add('on');
+if(T[lang][pg]){document.getElementById('tb-t').textContent=T[lang][pg];document.getElementById('tb-s').textContent=T[lang][pg+'_s']||'';}
+if(pg==='clients')renderClients();
+if(pg==='crm')renderCRM();
+if(pg==='objections')renderObs();
+if(pg==='pricing')calcPrice();
+}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg||T[lang].copied;t.style.opacity='1';setTimeout(()=>t.style.opacity='0',2000);}
+function copyEl(id){const el=document.getElementById(id);if(!el)return;const txt=el.textContent||el.value||'';if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>showToast());}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast();}}
+
+const clData=[
+{n:'نون السعودية / Noon SA',s:'تجزئة',c:'الرياض',pain:'تحليل المبيعات وتوقع الطلب / Sales analytics & demand forecasting',pr:'عالية',ch:'LinkedIn'},
+{n:'سيلين للأزياء / Ciline Fashion',s:'تجزئة',c:'جدة',pain:'توصيات منتجات + مخزون / Product recommendations + inventory',pr:'عالية',ch:'LinkedIn'},
+{n:'جاهز للتوصيل / Jahiz Delivery',s:'لوجستيات',c:'الرياض',pain:'أتمتة جدولة التوصيل / Delivery scheduling automation',pr:'عالية',ch:'واتساب'},
+{n:'عيادات النخبة / Elite Clinics',s:'صحة',c:'الرياض',pain:'جدولة مواعيد ذكية / Smart appointment scheduling',pr:'عالية',ch:'اتصال'},
+{n:'مجمع الحياة الطبي / Al Hayah Medical',s:'صحة',c:'جدة',pain:'تقارير المرضى الآلية / Automated patient reports',pr:'عالية',ch:'LinkedIn'},
+{n:'دار المستقبل العقارية / Dar Al Mustaqbal',s:'عقارات',c:'الرياض',pain:'chatbot العملاء وتصفية / Client chatbot + filtering',pr:'عالية',ch:'واتساب'},
+{n:'بيتك العقارية / Baitak Realty',s:'عقارات',c:'جدة',pain:'تحليل أسعار السوق / Market price analysis',pr:'عالية',ch:'LinkedIn'},
+{n:'كافيه روف / Roof Cafe',s:'مطاعم',c:'الرياض',pain:'نظام طلبات ذكي + تحليل / Smart orders + analytics',pr:'متوسطة',ch:'إنستغرام'},
+{n:'مطاعم البحر الأحمر / Red Sea Restaurants',s:'مطاعم',c:'جدة',pain:'إدارة المخزون + توقع / Inventory + demand forecasting',pr:'متوسطة',ch:'واتساب'},
+{n:'أكاديمية مسار / Masaar Academy',s:'تعليم',c:'الرياض',pain:'متابعة الطلاب آلياً / Automated student tracking',pr:'متوسطة',ch:'LinkedIn'},
+{n:'منصة تعليم أونلاين / Online Learning Platform',s:'تعليم',c:'الدمام',pain:'chatbot دعم الطلاب / Student support chatbot',pr:'متوسطة',ch:'LinkedIn'},
+{n:'شركة ريادة للمقاولات / Riada Contracting',s:'بناء',c:'الرياض',pain:'تقدير التكاليف + الموردين / Cost estimation + suppliers',pr:'متوسطة',ch:'اتصال'},
+{n:'البناء الحديث / Modern Build Co',s:'بناء',c:'جدة',pain:'تتبع سير العمل آلياً / Automated work progress tracking',pr:'متوسطة',ch:'LinkedIn'},
+{n:'مجموعة الرشيد / Al Rashid Group',s:'تجزئة',c:'القصيم',pain:'تقارير ذكية للفروع / Smart branch reports',pr:'منخفضة',ch:'اتصال'},
+{n:'مكتب الميزان القانوني / Al Mizan Legal',s:'خدمات',c:'الرياض',pain:'مراجعة العقود بالـ AI / AI contract review',pr:'منخفضة',ch:'LinkedIn'},
+];
+let curSec='all',curSrch='';
+function renderClients(){
+const filtered=clData.filter(c=>(curSec==='all'||c.s===curSec)&&(!curSrch||c.n.includes(curSrch)||c.c.includes(curSrch)||c.s.includes(curSrch)));
+const bc=s=>({صحة:'bt',تجزئة:'bb',عقارات:'bg',مطاعم:'bo',لوجستيات:'bp',تعليم:'bt',بناء:'bg',خدمات:'bb'}[s]||'bb');
+const bp=p=>({عالية:'br',متوسطة:'bo',منخفضة:'bb'}[p]||'bb');
+document.getElementById('cl-body').innerHTML=filtered.map(c=>`<tr><td><div style="font-weight:500;font-size:12px">${c.n}</div><div style="font-size:10px;color:var(--muted)">${c.c}</div></td><td><span class="badge ${bc(c.s)}">${c.s}</span></td><td style="color:var(--muted);font-size:11px">${c.c}</td><td style="font-size:11px;max-width:160px;line-height:1.4">${c.pain}</td><td><span class="badge ${bp(c.pr)}">${c.pr}</span></td><td style="font-size:11px;color:var(--blue)">${c.ch}</td><td><button class="btn btn-ghost btn-sm" onclick="sendPrompt('اكتب رسالة تواصل مخصصة لشركة ${c.n.split('/')[0].trim()} في قطاع ${c.s}، مشكلتهم الرئيسية: ${c.pain.split('/')[0].trim()}')"><span class="nl" data-ar="رسالة↗" data-en="Message↗">رسالة↗</span></button></td></tr>`).join('');
+document.getElementById('cl-count').textContent=`${filtered.length} / ${clData.length}`;
+}
+function filterSector(s,btn){curSec=s;document.querySelectorAll('.tag').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderClients();}
+function filterClients(){curSrch=document.getElementById('cl-search').value;renderClients();}
+
+async function callClaude(prompt,outEl,btnEl,btnHTML){
+if(btnEl){btnEl.disabled=true;btnEl.innerHTML='⏳';}
+outEl.textContent='';let text='';outEl.textContent='▌';
+try{
+const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,stream:true,messages:[{role:'user',content:prompt}]})});
+if(!res.ok){outEl.textContent='API error. Check connection.';if(btnEl){btnEl.disabled=false;btnEl.innerHTML=btnHTML||'Generate';}return '';}
+const reader=res.body.getReader();const dec=new TextDecoder();
+while(true){const{done,value}=await reader.read();if(done)break;const lines=dec.decode(value).split('\n');for(const line of lines){if(line.startsWith('data:')){const d=line.slice(5).trim();if(d==='[DONE]')break;try{const p=JSON.parse(d);if(p.type==='content_block_delta'&&p.delta?.text){text+=p.delta.text;outEl.textContent=text+'▌';outEl.scrollTop=outEl.scrollHeight;}}catch(e){}}}}
+outEl.textContent=text;
+}catch(e){outEl.textContent=lang==='ar'?'خطأ في الاتصال. تأكد من الاتصال بالإنترنت.':'Connection error. Check your internet.';}
+if(btnEl){btnEl.disabled=false;btnEl.innerHTML=btnHTML||'✦';}
+return text;
+}
+
+const msgTypes={
+linkedin:l=>l==='ar'?'رسالة تواصل أولى على LinkedIn — غير رسمية، 3-4 أسطر، تبدأ بملاحظة عن الشركة لا بتعريف بالنفس، تنتهي بسؤال واحد محدد':'First LinkedIn outreach — informal, 3-4 lines, starts with an observation about their company, ends with one specific question',
+followup:l=>l==='ar'?'رسالة متابعة بعد 3 أيام بدون رد — قصيرة، تضيف قيمة جديدة، لا تذكر الرسالة السابقة':'3-day follow-up with no reply — short, adds new value, does not mention previous message',
+value:l=>l==='ar'?'رسالة تقدم فيها شيئاً مجانياً (تقرير، نصيحة) دون أي ضغط للبيع — هدفها بناء الثقة فقط':'Message offering something free (report, tip) with zero sales pressure — goal is trust building only',
+whatsapp:l=>l==='ar'?'رسالة واتساب — قصيرة جداً سطران، غير رسمية، مباشرة':'WhatsApp message — very short 2 lines, informal, direct',
+email:l=>l==='ar'?'بريد إلكتروني رسمي — موضوع جذاب، 3 فقرات قصيرة: ألم + حل + CTA':'Formal email — compelling subject, 3 short paragraphs: pain + solution + CTA',
+reactivate:l=>l==='ar'?'رسالة لعميل تواصلنا معه قبل أكثر من شهر ولم يرد — نبدأ بسبب جديد للتواصل':'Re-engagement message for a lead gone cold over a month — start with a fresh new reason'
+};
+const genTips={
+linkedin:l=>l==='ar'?'أرسلها كطلب تواصل أولاً. بعد القبول بـ 24 ساعة أرسل الرسالة.':'Send as a connection request first. After acceptance, wait 24 hours then message.',
+followup:l=>l==='ar'?'أرسلها يوم مختلف عن الأولى صباحاً. تصرف كمحادثة جديدة.':'Send on a different day, morning. Treat it as a fresh conversation.',
+value:l=>l==='ar'?'لا تطلب أي شيء في المقابل — الكرم يبني الثقة.':'Ask for nothing in return — generosity builds trust.',
+whatsapp:l=>l==='ar'?'ابحث عن الرقم من الموقع الرسمي أو LinkedIn.':'Find the number from their official website or LinkedIn.',
+email:l=>l==='ar'?'الموضوع أهم من الرسالة — اجعله عن الشركة لا عنك.':'Subject line matters more than the email — make it about them, not you.',
+reactivate:l=>l==='ar'?'أفضل وقت: بعد خبر عن توسع الشركة أو تغيير قيادي.':'Best time: after news of their expansion or a leadership change.'
+};
+async function generateMessage(){
+const co=document.getElementById('g-co').value||'الشركة/Company';
+const nm=document.getElementById('g-nm').value||'صاحب القرار/Decision-maker';
+const se=document.getElementById('g-se').value;
+const pa=document.getElementById('g-pa').value;
+const ty=document.getElementById('g-ty').value;
+const gl=document.getElementById('g-lang').value;
+const prompt=`You are an expert sales consultant specializing in AI consulting for Saudi Arabian SMEs. Write a ${msgTypes[ty](gl)} for:
+- Company: ${co}
+- Contact: ${nm}
+- Sector: ${se}
+- Main Challenge: ${pa}
+- Language: ${gl==='ar'?'Saudi colloquial Arabic (professional but not formal)':gl==='en'?'Professional English':'Both Arabic and English versions'}
+Rules: Never start with "I am..." or "My name is...". Never mention price. Goal is to get a meeting/reply, not to sell directly. Write the message only, no explanations.`;
+const btn=document.getElementById('gen-btn');
+const text=await callClaude(prompt,document.getElementById('gen-out'),btn,'<i class="ti ti-sparkles"></i> '+(lang==='ar'?'توليد بالـ AI':'Generate with AI'));
+if(text&&text.length>10){
+['imp-btn','sht-btn','frm-btn'].forEach(id=>document.getElementById(id).disabled=false);
+const tip=document.getElementById('gen-tip');tip.textContent='💡 '+genTips[ty](gl);tip.style.display='block';
+document.getElementById('gen-chars').textContent=text.length+' chars';
+}
+}
+async function improveMsg(){const cur=document.getElementById('gen-out').textContent;const btn=document.getElementById('imp-btn');await callClaude(`Improve this sales message to be more compelling and natural, keep the same tone and language:\n"${cur}"\nReturn only the improved message.`,document.getElementById('gen-out'),btn,'Improve');}
+async function shortenMsg(){const cur=document.getElementById('gen-out').textContent;const btn=document.getElementById('sht-btn');await callClaude(`Shorten this message by 40% keeping the same impact and language:\n"${cur}"\nReturn only the shortened message.`,document.getElementById('gen-out'),btn,'Shorten');}
+async function formalMsg(){const cur=document.getElementById('gen-out').textContent;const btn=document.getElementById('frm-btn');await callClaude(`Make this message more formal and professional, keep the same language:\n"${cur}"\nReturn only the revised message.`,document.getElementById('gen-out'),btn,'Formal');}
+
+let callSc='',callScEn='',callHist=[],callStep=0;
+const stepLabels={ar:['الافتتاح','بناء الثقة','SPIN الاكتشاف','ربط الحل','الإغلاق'],en:['Opening','Trust Building','SPIN Discovery','Solution Bridge','Closing']};
+const callHints={ar:['استخدم: "هل الوقت مناسب؟" — دائماً','اذكر معلومة عن الشركة تثبت إنك بحثت مسبقاً','اسأل SPIN: وضع → مشكلة → تأثير → حاجة','بع النتيجة لا التقنية — قدم مثال + أرقام','قدم خيارين محددين — لا تسأل "إيش يناسبك؟"'],en:['Use: "Is now a good time?" — always ask','Mention a specific fact about their company showing you researched','Ask SPIN: Situation → Problem → Implication → Need','Sell the outcome not the tech — example + numbers','Give 2 specific time options — never ask "What works for you?"']};
+function pickScenario(el,scAr,scEn,sector){
+document.querySelectorAll('#sc-pick .sc-card').forEach(c=>c.classList.remove('picked'));el.classList.add('picked');
+callSc=scAr;callScEn=scEn;callHist=[];callStep=0;
+document.getElementById('sc-pick').style.display='none';
+document.getElementById('sc-ready').style.display='block';
+document.getElementById('sc-label').textContent=(lang==='ar'?'السيناريو: '+scAr:'Scenario: '+scEn);
+document.getElementById('call-inp-row').style.display='flex';
+updateCallProgress();startCall();
+}
+function updateCallProgress(){
+for(let i=0;i<5;i++){const d=document.getElementById('cd'+i);if(!d)continue;d.style.background=i<callStep?'var(--gold)':i===callStep?'var(--teal)':'var(--border2)';}
+document.getElementById('call-step-lbl').textContent=`${lang==='ar'?'المرحلة':'Stage'} ${callStep+1}/5: ${stepLabels[lang][Math.min(callStep,4)]}`;
+document.getElementById('call-hint').textContent=callHints[lang][Math.min(callStep,4)];
+}
+function addBubble(type,text){const w=document.getElementById('call-chat');const d=document.createElement('div');d.className='bubble b-'+type;d.textContent=text;w.appendChild(d);w.scrollTop=w.scrollHeight;}
+function showTyping(){const w=document.getElementById('call-chat');const d=document.createElement('div');d.className='typing';d.id='typing';d.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';w.appendChild(d);w.scrollTop=w.scrollHeight;}
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+async function startCall(){
+const w=document.getElementById('call-chat');w.innerHTML='';
+addBubble('sys',lang==='ar'?'المكالمة بدأت — تصرف كأنك اتصلت للتو':'Call started — act as if you just called');
+const sc=lang==='ar'?callSc:callScEn;
+const prompt=`You are a Saudi business client: ${sc}. Respond naturally to a surprise sales call. Be realistic and slightly skeptical. ${lang==='ar'?'Respond in Saudi colloquial Arabic.':'Respond in natural English.'} One or two sentences only.`;
+showTyping();
+try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:150,messages:[{role:'user',content:prompt}]})});const d=await res.json();removeTyping();const reply=d.content?.[0]?.text||'آلو؟/Hello?';addBubble('ai',reply);callHist.push({role:'assistant',content:reply});}
+catch(e){removeTyping();addBubble('sys','Connection error');}
+}
+async function sendCallMsg(){
+const inp=document.getElementById('call-inp');const msg=inp.value.trim();if(!msg)return;inp.value='';
+addBubble('user',msg);callHist.push({role:'user',content:msg});
+if(callStep<4)callStep++;updateCallProgress();showTyping();
+const sc=lang==='ar'?callSc:callScEn;
+const sysP=`You are a Saudi business client: ${sc}. Reply naturally. ${lang==='ar'?'Respond in Saudi colloquial Arabic.':'Respond in English.'} Stage: ${stepLabels[lang][Math.min(callStep,4)]}. One or two sentences.`;
+const msgs=[{role:'user',content:sysP},...callHist.slice(-6)];
+try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages})});const d=await res.json();removeTyping();const reply=d.content?.[0]?.text||'...';addBubble('ai',reply);callHist.push({role:'assistant',content:reply});if(callStep>=4){setTimeout(()=>{addBubble('sys',lang==='ar'?'انتهت المكالمة — يتم تقييم الأداء...':'Call ended — evaluating performance...');evaluateCall();},800);}}
+catch(e){removeTyping();}
+}
+async function evaluateCall(){
+const transcript=callHist.map(m=>`${m.role==='user'?'Salesperson':'Client'}: ${m.content}`).join('\n');
+const prompt=`Evaluate this sales call performance:\n${transcript}\n\nProvide: 2 strengths, 2 improvements, overall score /10. ${lang==='ar'?'In Arabic.':'In English.'} Brief and direct.`;
+try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:prompt}]})});const d=await res.json();const w=document.getElementById('call-chat');const ev=document.createElement('div');ev.className='bubble b-sys';ev.style.cssText='max-width:95%;border-radius:var(--r2);padding:10px 12px;font-size:11px;';ev.textContent='📊 '+d.content?.[0]?.text;w.appendChild(ev);w.scrollTop=w.scrollHeight;}catch(e){}
+}
+function resetCall(){document.getElementById('sc-pick').style.display='block';document.getElementById('sc-ready').style.display='none';document.getElementById('call-inp-row').style.display='none';document.getElementById('call-chat').innerHTML='<div class="bubble b-sys">'+(lang==='ar'?'اختر سيناريو وابدأ المكالمة التدريبية':'Choose a scenario to start the training call')+'</div>';document.querySelectorAll('#sc-pick .sc-card').forEach(c=>c.classList.remove('picked'));callStep=0;callHist=[];}
+
+async function analyzeClient(){
+const co=document.getElementById('an-co').value||'Company';
+const sz=document.getElementById('an-sz').value;
+const inf=document.getElementById('an-inf').value||'No additional info';
+const al=document.getElementById('an-lang').value;
+const prompt=`You are a sales expert specializing in AI consulting for Saudi Arabian SMEs. Analyze this prospect and provide:
+1. Decision-maker personality type & mindset
+2. Top 3 likely pain points
+3. Hidden motivation (what they really want)
+4. Expected resistance point
+5. The one phrase that opens the door
+6. Best outreach channel and timing
+Company: ${co} | Size: ${sz} | Known info: ${inf}
+${al==='ar'?'Respond in Arabic.':'Respond in English.'} Be concise and actionable.`;
+const btn=document.getElementById('an-btn');
+await callClaude(prompt,document.getElementById('an-out'),btn,'<i class="ti ti-microscope"></i> '+(lang==='ar'?'تحليل بالـ AI':'Analyze with AI'));
+}
+
+async function askCoach(el,q){
+document.querySelectorAll('#pg-coach .sc-card').forEach(c=>c.classList.remove('picked'));if(el)el.classList.add('picked');
+const cl=document.getElementById('coach-lang').value;
+const prompt=`You are a world-class sales coach specializing in the Saudi Arabian market and AI/tech services. Answer this question: ${q}\n${cl==='ar'?'Respond in Arabic (Saudi style).':'Respond in English.'} Be practical and immediately actionable. 200-250 words max.`;
+await callClaude(prompt,document.getElementById('coach-out'),null);
+}
+async function askCoachCustom(){
+const q=document.getElementById('coach-q').value.trim();if(!q)return;document.getElementById('coach-q').value='';
+await askCoach(null,q);
+}
+
+function showScript(type){document.getElementById('sc-li').style.display=type==='li'?'block':'none';document.getElementById('sc-call').style.display=type==='call'?'block':'none';}
+
+const obsData=[
+{q:'"ما عندنا ميزانية" / "We have no budget"',a:'AR: ما أبيعك شيء الحين — أبغى أفهم وضعكم وأحسب معك إذا الحل يوفر لكم أكثر مما يكلف. لو الأرقام ما اتجت بقولك بصراحة. نعمل حساب سريع؟\nEN: I am not selling you anything right now — I want to understand your situation and calculate if the solution saves you more than it costs. If the numbers don\'t work, I will tell you honestly. Can we do a quick calculation?',m:'AR: حوّل التكلفة إلى استثمار بعائد محسوب / EN: Reframe cost as a calculated investment with measurable ROI'},
+{q:'"ما نحتاج AI — أعمالنا تمشي كويس" / "We don\'t need AI"',a:'AR: ممتاز — والشركات اللي تمشي كويس هي الأذكى في استخدام AI. لأن عندها عمليات واضحة تقدر تتحسن. سؤال: لو قدرتوا تخدمون 30% عملاء أكثر بنفس الفريق — يهمكم؟\nEN: Great — and companies that are running well are the smartest candidates for AI. Because they have clear processes that can be improved. One question: if you could serve 30% more clients with the same team — would that matter?',m:'AR: AI إضافة لا بديل / EN: AI is an addition, not a replacement'},
+{q:'"خلك تبعثلي إيميل" / "Just send me an email"',a:'AR: "بكل سرور — بس عشان يكون مفيداً، سؤال واحد: إيش أكبر شيء يأخذ وقت فريقك الحين؟" ثم: "ممتاز، بأبعتلك معلومات محددة لهذا الموضوع."\nEN: "Happy to — but to make it useful, one quick question: what is the biggest time-drain for your team right now?" Then: "Perfect, I will send you specific info about exactly that."',m:'AR: حوّل الإيميل لمحادثة / EN: Convert the email request into a conversation'},
+{q:'"جربنا تقنية قبل وما نجحت" / "We tried tech before and it failed"',a:'AR: "أقدر أفهم. سؤال: إيش اللي ما اشتغل بالتحديد؟" ثم: "هذا يجيني كثير — السبب عادةً إن الحل ما كان مخصص لعمليتهم. أنا أبدأ بفهم العملية قبل أي أداة."\nEN: "I understand that. Question: what specifically didn\'t work?" Then: "I hear this often — the reason is usually that the solution wasn\'t customized for their process. I start by understanding the process before choosing any tool."',m:'AR: تجربتهم السيئة هي فرصتك / EN: Their bad experience is your opportunity'},
+{q:'"سعرك غالي" / "Your price is too high"',a:'AR: "ما أشك إن عندك عروض أرخص. سؤال: إيش تتوقعون النتيجة بعد 3 أشهر؟ الفرق مو في السعر — في ضمان النتيجة. 35K بنتيجة واضحة مقابل 15K بدون ضمان — إيش أوفر؟"\nEN: "I am sure you have cheaper options. Question: what result do you expect after 3 months? The difference isn\'t price — it\'s guaranteed outcomes. 35K with clear results vs 15K with no guarantee — which is actually cheaper?"',m:'AR: ارفع القيمة المدركة لا تخفض السعر / EN: Raise perceived value, don\'t lower price'},
+{q:'"بعد رمضان / بعد الصيف" / "After Ramadan / After summer"',a:'AR: "أقدر — بس سؤال: المشكلة اللي ذكرتها، هل تتوقف في الصيف؟" [لا] "كل يوم تأخر = خسارة محسوبة. الحل ما يحتاج حضورك الكامل — أنا أعمل وأنت تتابع."\nEN: "I understand — but quick question: does the problem you mentioned stop during summer?" [No] "Every day of delay = calculated loss. The solution does not need your full attention — I do the work, you just review."',m:'AR: اجعل التأجيل مؤلماً / EN: Make the delay painful'},
+{q:'"عندنا شركة IT تكفي" / "We already have an IT company"',a:'AR: "ممتاز — الـ IT يصلح المشاكل التقنية، أنا أضيف طبقة ذكاء فوق ما عندكم. نكملوا معاً مو نبدل."\nEN: "Great — IT fixes technical problems, I add an intelligence layer on top of what you already have. We complement each other, not replace."',m:'AR: أنت إضافة لا منافس / EN: You are an addition, not a competitor'},
+];
+function renderObs(){document.getElementById('obs-wrap').innerHTML=obsData.map((o,i)=>`<div class="ob-box"><div class="ob-h" onclick="document.getElementById('ob${i}').classList.toggle('hidden')"><div style="font-size:12px;color:var(--red);font-weight:500">${o.q}</div><i class="ti ti-chevron-down" style="font-size:14px;color:var(--muted)"></i></div><div id="ob${i}" class="ob-b hidden"><strong style="color:var(--teal)">${lang==='ar'?'الرد:':'Reply:'}</strong> ${o.a}<br><br><strong style="color:var(--gold)">${lang==='ar'?'المبدأ:':'Principle:'}</strong> ${o.m}</div></div>`).join('');}
+
+const crmData=[
+{co:'عيادات النخبة',s:'صحة',st:1,last:'أمس/Yesterday',next:'Sun',note:'Interested'},
+{co:'سيلين للأزياء',s:'تجزئة',st:3,last:'3d',next:'Tue',note:'Zoom meeting'},
+{co:'دار المستقبل',s:'عقارات',st:4,last:'Today',next:'Thu',note:'Waiting for proposal'},
+{co:'كافيه روف',s:'مطاعم',st:2,last:'1w',next:'Sun',note:'Positive reply'},
+{co:'جاهز للتوصيل',s:'لوجستيات',st:4,last:'Today',next:'Tomorrow',note:'Deal close soon'},
+{co:'أكاديمية مسار',s:'تعليم',st:1,last:'2d',next:'Wed',note:''},
+{co:'مجمع الحياة',s:'صحة',st:0,last:'—',next:'Sun',note:''},
+{co:'بيتك العقارية',s:'عقارات',st:2,last:'4d',next:'Tue',note:''},
+];
+const sNames={ar:['لم يُتواصل','تواصل أولي','رد إيجابي','اجتماع مجدول','عرض مقدم','مغلق/خسرنا'],en:['Not Contacted','First Contact','Positive Reply','Meeting Booked','Proposal Sent','Closed/Lost']};
+const sCls=['s0','s1','s2','s3','s4','s5'];
+function renderCRM(){
+const bc=s=>({صحة:'bt',تجزئة:'bb',عقارات:'bg',مطاعم:'bo',لوجستيات:'bp',تعليم:'bt'}[s]||'bb');
+document.getElementById('crm-body').innerHTML=crmData.map((r,i)=>`<tr><td style="font-weight:500;font-size:12px">${r.co}</td><td><span class="badge ${bc(r.s)}" style="font-size:10px">${r.s}</span></td><td><span class="stage ${sCls[r.st]}" onclick="nextStage(${i})">${sNames[lang][r.st]}</span></td><td style="font-size:11px;color:var(--muted)">${r.last}</td><td style="font-size:11px;color:var(--blue)">${r.next}</td><td><input class="note-inp" value="${r.note}" onchange="crmData[${i}].note=this.value" placeholder="${lang==='ar'?'ملاحظة...':'Note...'}"></td><td><button class="btn btn-ghost btn-sm" onclick="generateMessage()"><span class="nl" data-ar="رسالة" data-en="Msg">رسالة</span></button></td></tr>`).join('');
+document.getElementById('crm-tot').textContent=crmData.length;
+document.getElementById('crm-act').textContent=crmData.filter(r=>r.st>=1&&r.st<=4).length;
+document.getElementById('crm-mtg').textContent=crmData.filter(r=>r.st===3).length;
+document.getElementById('crm-cl').textContent=crmData.filter(r=>r.st===4).length;
+}
+function nextStage(i){crmData[i].st=Math.min(5,(crmData[i].st+1));renderCRM();}
+function addCRMRow(){crmData.push({co:lang==='ar'?'شركة جديدة':'New Company',s:'تجزئة',st:0,last:'—',next:'—',note:''});renderCRM();}
+
+function calcPrice(){
+const h=parseInt(document.getElementById('p-h').value);const r=parseInt(document.getElementById('p-r').value);
+const c=parseInt(document.getElementById('p-c').value)/100;const m=parseInt(document.getElementById('p-m').value)/100;
+const mult=parseFloat(document.getElementById('p-t').value);
+document.getElementById('p-h-out').textContent=h+' hrs';
+document.getElementById('p-r-out').textContent=r.toLocaleString()+' SAR';
+document.getElementById('p-c-out').textContent=(c*100)+'%';
+document.getElementById('p-m-out').textContent=(m*100)+'%';
+const base=h*r*mult;const withC=base*(1+c);const final=Math.round(withC/(1-m)/1000)*1000;
+const min=Math.round(final*.75/500)*500;const max=Math.round(final*1.4/1000)*1000;
+document.getElementById('p-rec').textContent=final.toLocaleString();
+document.getElementById('p-min').textContent=min.toLocaleString();
+document.getElementById('p-max').textContent=max.toLocaleString();
+const labor=Math.round(h*r);const tools=Math.round(base*c);const profit=Math.round(final*m);
+document.getElementById('p-breakdown').innerHTML=`<div style="display:flex;justify-content:space-between;color:var(--muted);margin-bottom:3px"><span>${lang==='ar'?'تكلفة العمل':'Labor Cost'}</span><span style="color:var(--white)">${labor.toLocaleString()} SAR</span></div><div style="display:flex;justify-content:space-between;color:var(--muted);margin-bottom:3px"><span>${lang==='ar'?'مصاريف الأدوات':'Tool Costs'}</span><span style="color:var(--white)">${tools.toLocaleString()} SAR</span></div><div style="display:flex;justify-content:space-between;color:var(--muted)"><span>${lang==='ar'?'هامش ربحك':'Your Profit Margin'}</span><span style="color:var(--gold);font-weight:600">${profit.toLocaleString()} SAR</span></div>`;
+let adv='';
+if(final<15000)adv=lang==='ar'?'السعر منخفض — يضر بمصداقيتك. ارفع ساعات العمل أو سعر الساعة.':'Price too low — hurts credibility. Raise hours or hourly rate.';
+else if(final<30000)adv=lang==='ar'?'مناسب للـ Pilot — اجعله نقطة انطلاق للعقد الأكبر.':'Good for a Pilot — make it a launchpad for the bigger deal.';
+else if(final<60000)adv=lang==='ar'?'النطاق المثالي للـ Professional. قدمه بثقة.':'Ideal Professional range. Present with full confidence.';
+else adv=lang==='ar'?'سعر مرتفع — قدم ROI واضح وضمانات قوية.':'High price — present clear ROI and strong guarantees.';
+document.getElementById('p-advice').textContent='💡 '+adv;
+}
+
+function updateKPIs(){
+const c=parseInt(document.getElementById('ki1').value)||0;const r=parseInt(document.getElementById('ki2').value)||0;
+const m=parseInt(document.getElementById('ki3').value)||0;const v=parseInt(document.getElementById('ki4').value)||0;
+document.getElementById('kp-c').textContent=c;document.getElementById('kp-r').textContent=r;
+document.getElementById('kp-m').textContent=m;document.getElementById('kp-v').textContent=v>0?v.toLocaleString():'0';
+document.getElementById('kp-cb').style.width=Math.min(100,Math.round(c/30*100))+'%';
+document.getElementById('kp-rb').style.width=Math.min(100,Math.round(r/10*100))+'%';
+document.getElementById('kp-mb').style.width=Math.min(100,Math.round(m/5*100))+'%';
+document.getElementById('kp-vb').style.width=Math.min(100,Math.round(v/35000*100))+'%';
+const rr=c>0?Math.round(r/c*100):0;const mr=r>0?Math.round(m/r*100):0;const cr=m>0&&v>0?Math.round(1/m*100):0;
+document.getElementById('cv1').textContent=rr+'%';document.getElementById('cv2').textContent=mr+'%';document.getElementById('cv3').textContent=cr+'%';
+document.getElementById('cvb1').style.width=Math.min(100,rr*2.5)+'%';document.getElementById('cvb2').style.width=Math.min(100,mr*2)+'%';document.getElementById('cvb3').style.width=Math.min(100,cr)+'%';
+let adv='';
+if(c===0)adv=lang==='ar'?'ابدأ بإرسال أول 10 رسائل اليوم.':'Start by sending your first 10 messages today.';
+else if(rr<20)adv=lang==='ar'?'نسبة الردود منخفضة — غيّر الافتتاحية أو القناة.':'Low reply rate — change your opening line or channel.';
+else if(mr<30)adv=lang==='ar'?'الردود جيدة لكن التحويل للاجتماعات ضعيف — اقترح وقتاً محدداً.':'Good replies but weak meeting conversion — propose a specific time slot.';
+else if(m>0&&v===0)adv=lang==='ar'?'عندك اجتماعات لكن ما أغلقت — جرب Pilot بسعر رمزي.':'You have meetings but no closes — try a symbolic-price Pilot.';
+else if(v>0)adv=lang==='ar'?'ممتاز! اطلب Referral من أول عميل هذا الأسبوع.':'Excellent! Ask your first client for a referral this week.';
+document.getElementById('kpi-adv').textContent=adv||'✓ '+(lang==='ar'?'أرقامك على المسار الصحيح.':'Your numbers are on track.');
+}
+
+renderClients();renderCRM();renderObs();calcPrice();
+
+// ===== LINKEDIN AI FUNCTIONS =====
+async function generateLinkedinPost(){
+  const sector = document.getElementById('li-sector').value;
+  const type = document.getElementById('li-type').value;
+  const lang_li = document.getElementById('li-lang').value;
+  const kw = document.getElementById('li-keywords').value;
+  const today = new Date().toLocaleDateString('ar-SA');
+  const typePrompts = {
+    shocking_stat: 'a shocking statistic post that opens discussion and drives engagement',
+    myth_buster: 'a myth-busting post that challenges common misconceptions',
+    case_study: 'a success story post with before/after results',
+    tip_list: 'a practical tips list post',
+    thought_leader: 'a thought leadership opinion post',
+    trending_ai: 'a post about the latest AI trends and their practical applications in Saudi businesses (2024-2025: GPT-4o, Claude 3.5, AI agents, RAG, multimodal AI, local LLMs)',
+    seo_rich: 'an SEO-optimized LinkedIn post with strategic keywords for maximum reach'
+  };
+  const langInstr = lang_li==='ar' ? 'Write in Saudi Arabic colloquial professional style' : lang_li==='en' ? 'Write in English' : 'Write both Arabic and English versions';
+  const prompt = `You are a top LinkedIn content creator specializing in AI consulting for Saudi SMEs. Today is ${today}.
+
+Create ${typePrompts[type]} about: ${sector}
+${kw ? 'Include these keywords naturally: ' + kw : ''}
+
+Requirements:
+- ${langInstr}
+- Hook in first line (makes people stop scrolling)
+- Short paragraphs (1-2 sentences each)
+- Use ← or → arrows for lists
+- 3-5 relevant hashtags at the end (mix Arabic and English)
+- SEO-optimized for LinkedIn algorithm (peak engagement trigger words)
+- Include a clear call-to-action question at the end
+- Max 1200 characters
+- Fresh, non-generic, 2025-relevant content
+
+Write the complete post only, no explanations.`;
+  const btn = document.getElementById('li-gen-btn');
+  const out = document.getElementById('li-out');
+  const text = await callClaude(prompt, out, btn, '<i class="ti ti-sparkles"></i> '+(lang==='ar'?'توليد منشور جديد':'Generate New Post'));
+  if(text && text.length > 50){
+    ['li-hook-btn','li-seo-btn','li-short-btn'].forEach(id=>document.getElementById(id).disabled=false);
+    const tip = document.getElementById('li-tip');
+    const tips_ar = {shocking_stat:'انشر الأحد أو الاثنين صباحاً — هذا النوع يحصل على أعلى engagement.',myth_buster:'ابدأ بـ hook قوي يخالف التوقع — الجدل يزيد المشاركة.',case_study:'أضف أرقاماً محددة دائماً — "91%" أقوى من "تحسّن كبير".',tip_list:'استخدم ← في القوائم بدل النقاط — أكثر قراءة على الموبايل.',thought_leader:'شارك رأيك الشخصي بجرأة — الآراء المحددة تجذب أكثر.',trending_ai:'أضف رابط مقال أو مصدر لزيادة المصداقية.',seo_rich:'الهاشتاقات الأولى الثلاثة هي الأهم للـ algorithm.'};
+    tip.textContent = '💡 ' + (tips_ar[type]||'');
+    tip.style.display = 'block';
+  }
+}
+
+async function getTrendingTopics(){
+  const btn = document.getElementById('li-trend-btn');
+  const out = document.getElementById('li-trends');
+  btn.disabled = true; btn.textContent = '⏳';
+  const prompt = `List 8 trending AI topics for LinkedIn content in Saudi Arabia / Gulf region for 2025. 
+For each topic provide:
+- Topic name (Arabic + English)  
+- Why it's trending now
+- One hook sentence to start a post
+Format as a numbered list. Be specific and current (GPT-4o, Claude 3.5 Sonnet, AI agents, Gemini 2.0, DeepSeek, local Arabic LLMs, Vision 2030 AI, Saudization+AI, etc.)
+${lang==='ar'?'Respond in Arabic.':'Respond in English.'}`;
+  await callClaude(prompt, out, btn, '<i class="ti ti-trending-up"></i> '+(lang==='ar'?'ابحث عن أحدث الترندات':'Get Trending AI Topics'));
+}
+
+async function improveHook(){
+  const cur = document.getElementById('li-out').textContent;
+  const btn = document.getElementById('li-hook-btn');
+  await callClaude(`Improve ONLY the first line (hook) of this LinkedIn post to be more attention-grabbing and scroll-stopping. Return the full post with the improved hook:
+"${cur}"
+Return the complete improved post only.`, document.getElementById('li-out'), btn, lang==='ar'?'حسّن الـ Hook':'Improve Hook');
+}
+async function addSEO(){
+  const cur = document.getElementById('li-out').textContent;
+  const btn = document.getElementById('li-seo-btn');
+  await callClaude(`Optimize this LinkedIn post for SEO and LinkedIn algorithm: add strategic hashtags, improve keyword density, enhance engagement triggers. Keep the same language and tone:
+"${cur}"
+Return the optimized post only.`, document.getElementById('li-out'), btn, 'Add SEO');
+}
+async function makeLinkedinShort(){
+  const cur = document.getElementById('li-out').textContent;
+  const btn = document.getElementById('li-short-btn');
+  await callClaude(`Shorten this LinkedIn post to under 700 characters while keeping maximum impact. Keep hashtags and CTA:
+"${cur}"
+Return the shortened post only.`, document.getElementById('li-out'), btn, lang==='ar'?'أقصر':'Shorter');
+}
+
+// ===== AUTOMATION BUILDER FUNCTIONS =====
+function fillAutomation(el, sector, desc, tools){
+  document.querySelectorAll('#pg-builder .sc-card').forEach(c=>c.classList.remove('picked'));
+  el.classList.add('picked');
+  document.getElementById('bld-desc').value = desc;
+  document.getElementById('bld-tools').value = tools;
+}
+async function buildAutomation(){
+  const sector = document.getElementById('bld-sector').value;
+  const desc = document.getElementById('bld-desc').value || 'أتمتة عمليات الشركة';
+  const tools = document.getElementById('bld-tools').value || 'غير محدد';
+  const budget = document.getElementById('bld-budget').value;
+  const btn = document.getElementById('bld-btn');
+  const prompt = `You are an AI automation expert specializing in no-code solutions for Saudi SMEs.
+
+Build a complete automation workflow for:
+- Sector: ${sector}
+- Requirement: ${desc}
+- Available tools: ${tools}
+- Budget: ${budget}
+
+Provide:
+1. **Workflow Overview** - What the automation does (2-3 sentences)
+2. **Step-by-Step Flow** - Numbered steps with trigger → action → result
+3. **Recommended Tools** - Best no-code tools (Make.com, n8n, Zapier, etc.) with why
+4. **Implementation Plan** - Week 1, Week 2, Week 3 milestones
+5. **Expected Results** - Time saved, efficiency gains (be specific with numbers)
+6. **Estimated Build Time** - How long to implement
+7. **Client Pitch** - One paragraph to sell this to the client
+
+${lang==='ar'?'Respond in Arabic with some English tech terms.':'Respond in English.'}`;
+  const out = document.getElementById('bld-out');
+  const text = await callClaude(prompt, out, btn, '<i class="ti ti-wand"></i> '+(lang==='ar'?'ابنِ سير العمل بالـ AI':'Build Workflow with AI'));
+  if(text && text.length > 100) document.getElementById('bld-price-btn').disabled = false;
+}
+async function estimateAutomationPrice(){
+  const cur = document.getElementById('bld-out').textContent;
+  const btn = document.getElementById('bld-price-btn');
+  const prompt = `Based on this automation workflow:
+"${cur.substring(0,500)}"
+
+Provide a professional pricing estimate in SAR for Saudi market:
+- Setup/Development cost
+- Monthly maintenance
+- Recommended client price (with your margin)
+- ROI calculation for the client
+${lang==='ar'?'In Arabic.':'In English.'} Be specific with numbers.`;
+  const tempDiv = document.createElement('div');
+  tempDiv.className='tip-box';tempDiv.style.marginTop='10px';
+  document.getElementById('bld-out').after(tempDiv);
+  await callClaude(prompt, tempDiv, btn, lang==='ar'?'احسب التكلفة':'Estimate Cost');
+}
+
+// ===== CHATBOT BUILDER FUNCTIONS =====
+async function generateChatbot(){
+  const type = document.getElementById('cb-type').value;
+  const name = document.getElementById('cb-name').value || 'الشركة';
+  const services = document.getElementById('cb-services').value || 'خدمات متنوعة';
+  const cb_lang = document.getElementById('cb-lang').value;
+  const platform = document.getElementById('cb-platform').value;
+  const btn = document.getElementById('cb-gen-btn');
+  const typeDescs = {
+    appointment: 'appointment booking and scheduling',
+    customer_service: 'customer service and support',
+    sales_qualify: 'sales lead qualification',
+    faq: 'FAQ and information',
+    order_tracking: 'order tracking and status',
+    real_estate: 'real estate inquiries and property search'
+  };
+  const prompt = `You are a chatbot designer specializing in Arabic/English conversational AI for Saudi businesses.
+
+Design a complete ${typeDescs[type]} chatbot for:
+- Business: ${name}
+- Services: ${services}
+- Platform: ${platform}
+- Language: ${cb_lang==='ar'?'Saudi Arabic':cb_lang==='en'?'English':'Bilingual Arabic + English'}
+
+Provide:
+1. **Chatbot Personality** - Name, tone, style
+2. **Welcome Message** - Exact text to use
+3. **Main Menu Options** - 4-6 choices
+4. **Conversation Flows** - For each menu option: trigger → response → next step
+5. **Common Q&A** - 8 frequent questions with answers
+6. **Escalation Logic** - When to hand off to human agent
+7. **Closing Messages** - End of conversation templates
+8. **Implementation Guide** - How to build this in Voiceflow or Botpress (3 steps)
+
+Write all messages in the correct language. Make it natural and Saudi-friendly.`;
+  const out = document.getElementById('cb-out');
+  const text = await callClaude(prompt, out, btn, '<i class="ti ti-message-circle"></i> '+(lang==='ar'?'صمّم الشات بوت بالـ AI':'Design Chatbot with AI'));
+  if(text && text.length > 100) document.getElementById('cb-script-btn').disabled = false;
+}
+async function generateChatbotScript(){
+  const cur = document.getElementById('cb-out').textContent;
+  const btn = document.getElementById('cb-script-btn');
+  const prompt = `Based on this chatbot design:
+"${cur.substring(0,600)}"
+
+Generate a complete JSON-style conversation script that can be directly imported into Voiceflow or Botpress. Include: intents, entities, responses, conditions. Format it clearly with labels. ${lang==='ar'?'Keep message content in Arabic.':'Keep message content in English.'}`;
+  const tempDiv = document.createElement('div');
+  tempDiv.className='msg-area';tempDiv.style.marginTop='10px';tempDiv.style.fontSize='11px';
+  document.getElementById('cb-out').after(tempDiv);
+  await callClaude(prompt, tempDiv, btn, lang==='ar'?'ولّد السكريبت الكامل':'Full Script');
+}
+
+</script>
+</body>
+</html>
